@@ -1,14 +1,327 @@
-\documentclass{article}
+\documentclass[12pt,a4paper,oneside,pdftex]{report}
 \usepackage[utf8]{inputenc}
+\usepackage[OT1]{fontenc}
+\usepackage[finnish,english]{babel}
+%\usepackage{colorprofiles}
+%\usepackage[a-2b]{pdfx}
 
-\title{Master's thesis}
-\author{Petrus Holm}
-\date{April 2022}
+% Natbib allows you to select the format of the bibliography references.
+% The first example uses numbered citations: 
+\usepackage[square,sort&compress,numbers]{natbib}
+% The second example uses author-year citations.
+% If you use author-year citations, change the bibliography style (below); 
+% acm style does not work with author-year citations.
+% Also, you should use \citet (cite in text) when you wish to refer
+% to the author directly (\citet{blaablaa} said blaa blaa), and 
+% \citep when you wish to refer similarly than with numbered citations
+% (It has been said that blaa blaa~\citep{blaablaa}).
+% \usepackage[square]{natbib}
 
+% The alltt package provides an all-teletype environment that acts
+% like verbatim but you can use LaTeX commands in it. Uncomment if 
+% you want to use this environment. 
+% \usepackage{alltt}
+
+% The eurosym package provides a euro symbol. Use with \euro{}
+\usepackage{eurosym} 
+
+% Verbatim provides a standard teletype environment that renders
+% the text exactly as written in the tex file. Useful for code
+% snippets (although you can also use the listings package to get
+% automatic code formatting). 
+\usepackage{verbatim}
+
+% The listing package provides automatic code formatting utilities
+% so that you can copy-paste code examples and have them rendered
+% nicely. See the package documentation for details.
+% \usepackage{listings}
+
+% The fancuvrb package provides fancier verbatim environments 
+% (you can, for example, put borders around the verbatim text area
+% and so on). See package for details.
+% \usepackage{fancyvrb}
+
+% Supertabular provides a tabular environment that can span multiple 
+% pages. 
+%\usepackage{supertabular}
+% Longtable provides a tabular environment that can span multiple 
+% pages. This is used in the example acronyms file. 
+\usepackage{longtable}
+
+% The fancyhdr package allows you to set your the page headers 
+% manually, and allows you to add separator lines and so on. 
+% Check the package documentation. 
+% \usepackage{fancyhdr}
+
+% Subfigure package allows you to use subfigures (i.e. many subfigures
+% within one figure environment). These can have different labels and
+% they are numbered automatically. Check the package documentation. 
+\usepackage{subfigure}
+
+% The titlesec package can be used to alter the look of the titles 
+% of sections, chapters, and so on. This example uses the ``medium'' 
+% package option which sets the titles to a medium size, making them
+% a bit smaller than what is the default. You can fine-tune the 
+% title fonts and sizes by using the package options. See the package
+% documentation.
+\usepackage[medium]{titlesec}
+\usepackage{listings}
+
+% The TikZ package allows you to create professional technical figures.
+% The learning curve is quite steep, but it is definitely worth it if 
+% you wish to have really good-looking technical figures. 
+\usepackage{tikz}
+% You also need to specify which TikZ libraries you use
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.pathmorphing,decorations.markings}
+\usetikzlibrary{shapes}
+\usetikzlibrary{patterns}
+
+
+% The aalto-thesis package provides typesetting instructions for the
+% standard master's thesis parts (abstracts, front page, and so on)
+% Load this package second-to-last, just before the hyperref package.
+% Options that you can use: 
+%   mydraft - renders the thesis in draft mode. 
+%             Do not use for the final version. 
+%   doublenumbering - [optional] number the first pages of the thesis
+%                     with roman numerals (i, ii, iii, ...); and start
+%                     arabic numbering (1, 2, 3, ...) only on the 
+%                     first page of the first chapter
+\usepackage{aalto-thesis}
+%\usepackage[mydraft,doublenumbering]{aalto-thesis}
+
+
+
+% Hyperref
+% ------------------------------------------------------------------
+% Hyperref creates links from URLs, for references, and creates a
+% TOC in the PDF file.
+% This package must be the last one you include, because it has
+% compatibility issues with many other packages and it fixes
+% those issues when it is loaded.   
+%\RequirePackage[pdftex]{hyperref}
+\RequirePackage[pdfa]{hyperref}
+% Setup hyperref so that links are clickable but do not look 
+% different
+\hypersetup{colorlinks=false,raiselinks=false,breaklinks=true}
+\hypersetup{pdfborder={0 0 0}}
+\hypersetup{bookmarksnumbered=true}
+% The following line suggests the PDF reader that it should show the 
+% first level of bookmarks opened in the hierarchical bookmark view. 
+\hypersetup{bookmarksopen=true,bookmarksopenlevel=1}
+% Hyperref can also set up the PDF metadata fields. These are
+% set a bit later on, after the thesis setup.   
+
+
+% Thesis setup
+% ==================================================================
+% If you do not find the command for a text that is shown in the cover page or
+% in the abstract texts, check the aalto-thesis.sty file and locate the text
+% from there. 
+% All the texts are configured in language-specific blocks (lots of commands
+% that look like this: \renewcommand{\ATCITY}{Espoo}.
+% You can just fix the texts there. Just remember to check all the language
+% variants you use (they are all there in the same place). 
+% ------------------------------------------------------------------
+\newcommand{\TITLE}{}
+\newcommand{\DATE}{May 1, 2022}
+
+\newcommand{\FTITLE}{}
+\newcommand{\FDATE}{Toukokuu 1, 2022}
+
+% Supervisors and instructors
+% ------------------------------------------------------------------
+% Usually thesis have one supervisor and one advisor. Sometimes you
+% may have two advisors and, in double degree
+% programs, you may have two supervisors. 
+% If you have two supervisors, write both names here, separate them with a 
+% double-backslash (see below for an example)
+% Also remember to add the package option ``twosupervisors'' or
+% ``twoinstructors'' to the aalto-thesis package (aalto-thesis.sty
+% file line 72), so that the titles are in plural.
+
+% Example of one supervisor:
+\newcommand{\SUPERVISOR}{Professor X Y}
+\newcommand{\FSUPERVISOR}{Professori A B}
+
+% If you have only one instructor, just write one name here
+\newcommand{\INSTRUCTOR}{M.Sc. (Tech.) A B}
+\newcommand{\FINSTRUCTOR}{Diplomi-insinööri A B}
+
+% Other stuff
+% ------------------------------------------------------------------
+\newcommand{\PROFESSORSHIP}{Security and Cloud Computing}
+\newcommand{\FPROFESSORSHIP}{Tietoturva ja pilvilaskenta}
+% Professorship code is the same in all languages
+\newcommand{\PROFCODE}{SCI3084}
+\newcommand{\KEYWORDS}{Kata Containers, Kubernetes, Far Edge Cloud, Mobile Edge Computing, Container, Security, I/O performance}
+\newcommand{\FKEYWORDS}{Kata Containers, Kubernetes, Far Edge Cloud, mobiiliverkko, ohjelmistokontti, tietoturva, suorituskyky}
+\newcommand{\LANGUAGE}{English}
+\newcommand{\FLANGUAGE}{Englanti}
+
+% Author is the same for all languages
+\newcommand{\AUTHOR}{Petrus Holm}
+
+% Currently the English versions are used for the PDF file metadata
+% Set the PDF title
+\hypersetup{pdftitle={\TITLE}}
+% Set the PDF author
+\hypersetup{pdfauthor={\AUTHOR}}
+% Set the PDF keywords
+\hypersetup{pdfkeywords={\KEYWORDS}}
+% Set the PDF subject
+\hypersetup{pdfsubject={Master's Thesis}}
+
+
+% Layout settings
+% ------------------------------------------------------------------
+
+% When you write in English, you should use the standard LaTeX 
+% paragraph formatting: paragraphs are indented, and there is no 
+% space between paragraphs.
+% When writing in Finnish, we often use no indentation in the
+% beginning of the paragraph, and there is some space between the 
+% paragraphs.
+
+% Use this to control how much space there is between each line of text.
+% 1 is normal (no extra space), 1.3 is about one-half more space, and
+% 1.6 is about double line spacing.  
+% \linespread{1} % This is the default
+% \linespread{1.3}
+
+% Bibliography style
+% acm style gives you a basic reference style. It works only with numbered
+% references.
+\bibliographystyle{acm}
+% Plainnat is a plain style that works with both numbered and name citations.
+% \bibliographystyle{plainnat}
+
+
+% Extra hyphenation settings
+% ------------------------------------------------------------------
+% You can list here all the files that are not hyphenated correctly.
+% You can provide many \hyphenation commands and/or separate each word
+% with a space inside a single command. Put hyphens in the places where
+% a word can be hyphenated.
+% Note that (by default) LaTeX will not hyphenate words that already
+% have a hyphen in them (for example, if you write ``structure-modification 
+% operation'', the word structure-modification will never be hyphenated).
+% You need a special package to hyphenate those words.
+\hyphenation{di-gi-taa-li-sta yksi-suun-tai-sta}
+
+
+
+% The preamble ends here, and the document begins. 
+% Place all formatting commands and such before this line.
+% ------------------------------------------------------------------
 \begin{document}
+% This command adds a PDF bookmark to the cover page. You may leave
+% it out if you don't like it...
+\pdfbookmark[0]{Cover page}{bookmark.0.cover}
+% This command is defined in aalto-thesis.sty. It controls the page 
+% numbering based on whether the double-numbering option is specified
+\startcoverpage
 
-\maketitle
+% Cover page
+% These control in which language the cover-page information is shown
+\pagenumbering{roman}
+\coverpage{english}
 
-\section{Introduction}
+
+
+% Abstracts
+% ------------------------------------------------------------------
+% Include an abstract in the language that the thesis is written in,
+% and if your native language is Finnish or Swedish, one in that language.
+
+%\input{0abstract.tex}
+
+
+% Acknowledgements
+% ------------------------------------------------------------------
+% Select the language you use in your acknowledgements
+\selectlanguage{english}
+
+% Uncomment this line if you wish acknowledgements to appear in the 
+% table of contents
+%\addcontentsline{toc}{chapter}{Acknowledgements}
+
+% The star means that the chapter isn't numbered and does not 
+% show up in the TOC
+\chapter*{Acknowledgements}
+
+
+
+\vskip 10mm
+
+\noindent 
+\FDATE
+\vskip 5mm
+\noindent\AUTHOR
+
+% Acronyms
+% ------------------------------------------------------------------
+% Use \cleardoublepage so that IF two-sided printing is used 
+% (which is not often for masters theses), then the pages will still
+% start correctly on the right-hand side.
+\cleardoublepage
+% Example acronyms are placed in a separate file, acronyms.tex
+%\input{acronyms}
+
+% Table of contents
+% ------------------------------------------------------------------
+\cleardoublepage
+% This command adds a PDF bookmark that links to the contents.
+% You can use \addcontentsline{} as well, but that also adds contents
+% entry to the table of contents, which is kind of redundant.
+% The text ``Contents'' is shown in the PDF bookmark. 
+\pdfbookmark[0]{Contents}{bookmark.0.contents}
+\tableofcontents
+
+% List of tables
+% ------------------------------------------------------------------
+% You only need a list of tables for your thesis if you have very 
+% many tables. If you do, uncomment the following two lines.
+% \cleardoublepage
+% \listoftables
+
+% Table of figures
+% ------------------------------------------------------------------
+% You only need a list of figures for your thesis if you have very 
+% many figures. If you do, uncomment the following two lines.
+% \cleardoublepage
+% \listoffigures
+
+% The following label is used for counting the prelude pages
+\label{pages-prelude}
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%% The main content starts here %%%%%%%%%%%%%%%%%%%%%
+% ------------------------------------------------------------------
+% This command is defined in aalto-thesis.sty. It controls the page 
+% numbering based on whether the double-numbering option is specified
+\startfirstchapter
+\pagenumbering{arabic}
+
+% Add headings to pages (the chapter title is shown)
+\pagestyle{headings}
+
+
+% The contents of the thesis are separated to their own files.
+% Edit the content in these files, rename them as necessary.
+% ------------------------------------------------------------------
+
+
+% Load the bibliographic references
+% ------------------------------------------------------------------
+% You can use several .bib files:
+% \bibliography{thesis_sources,ietf_sources}
+\bibliography{sources}
+
+\appendix
+%\input{9appendix.tex}
 
 \end{document}
