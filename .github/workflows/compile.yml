@@ -18,7 +18,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Rename pdf
-        run: mv LaTeX/00main.pdf LaTeX/Thesis_Holm.pdf
+        run: mv LaTeX/main.pdf LaTeX/Thesis_Holm.pdf
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
