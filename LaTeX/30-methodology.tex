@@ -1,0 +1,44 @@
+
+\chapter{Methodology}
+
+\section{Research context}
+
+Swarmia is a Software as a Service tool for software development teams. Teams utilize Swarmia to measure their performance and find potential places of improvement in their development pipeline. Swarmia is designed to help teams work in a self-managed manner. 
+
+To provide insight to the client teams, Swarmia integrates with issue trackers like Jira and version control systems like GitHub. The teams are then provided with insights that is accessible to all team members through Swarmia web application. In addition, Swarmia can be configured to push updates to the teams Slack channel. 
+
+Swarmia can be used by a team of any size. The teams include both teams working within software companies in addition to in-house development teams of non-software companies. 
+
+The data collected by Swarmia includes pull requests, git commits, automated test runs and issues. Furthermore, Swarmia has read-access to the source code, which is used to estimate the change complexity. Swarmia does not store the source code, but rather calculates the size of the change and stores it in a distinct database. 
+
+One of the features in Swarmia is called Working Agreements. Teams can configure up to 8 of these agreements, which could be described as "team norms" or "collaboration guidelines". The agreements have to be selected from predefined pool, but each team can customise them to suit their use case. For example, a team could agree that they want to enforce linking pull requests to issues. Swarmia would then track the set condition automatically and inform the teams about the status of the agreement. 
+
+- connection to the scientific background: DORA, some papers
+- screenshots of Swarmia
+
+\section{Research questions}
+
+The main research question of this thesis is to find out if Working Agreements can enhance productivity in self-managed software development teams. The hypothesis based on previous research is that as Working Agreements promote methods that are shown to accelerate software development, they should have direct impact on the team's productivity.
+
+The second research question is to look into the Working Agreement composition in different teams and find out which of the agreements have the most impact in the teams performance. 
+
+\section{Approach}
+
+To answer RQ1, data of all teams using Working Agreements feature is analyzed. After finding potential patterns, a survey is sent to all members of all teams. The aim is to collect answers from at least 20 teams. In optimal situation, we would receive multiple answers from each team, giving a broader view on the team's dynamics and ways of working. 
+
+Historical activity data is pulled from the teams' source control repositories and issue tracker boards. The data is aggregated weekly. As team's have enabled features in Swarmia in different schedule, the data collection period is determined individually for each. For each team, the period is 6 months long. 
+
+The following metrics are derived from the data:
+\begin{enumerate}
+\item Pull Request Cycle Time
+\item Pull Request Review Time
+\item Issue Cycle Time
+\end{enumerate}
+
+To answer RQ2, we bla
+
+% problem: how to isolate WA impact from other Swarmia features?
+
+
+
+

@@ -23,7 +23,8 @@
 % \usepackage{alltt}
 
 % The eurosym package provides a euro symbol. Use with \euro{}
-\usepackage{eurosym} 
+\usepackage{eurosym}
+\usepackage{todonotes}
 
 % Verbatim provides a standard teletype environment that renders
 % the text exactly as written in the tex file. Useful for code
@@ -126,11 +127,11 @@
 % You can just fix the texts there. Just remember to check all the language
 % variants you use (they are all there in the same place). 
 % ------------------------------------------------------------------
-\newcommand{\TITLE}{}
-\newcommand{\DATE}{May 1, 2022}
+\newcommand{\TITLE}{Working Agreements influence on software development productivity}
+\newcommand{\DATE}{June 1, 2022}
 
-\newcommand{\FTITLE}{}
-\newcommand{\FDATE}{Toukokuu 1, 2022}
+\newcommand{\FTITLE}{Otsikko}
+\newcommand{\FDATE}{Kesäkuu 1, 2022}
 
 % Supervisors and instructors
 % ------------------------------------------------------------------
@@ -144,21 +145,21 @@
 % file line 72), so that the titles are in plural.
 
 % Example of one supervisor:
-\newcommand{\SUPERVISOR}{Professor X Y}
-\newcommand{\FSUPERVISOR}{Professori A B}
+\newcommand{\SUPERVISOR}{XXX Arto Hellas}
+\newcommand{\FSUPERVISOR}{XXX Arto Hellas}
 
 % If you have only one instructor, just write one name here
-\newcommand{\INSTRUCTOR}{M.Sc. (Tech.) A B}
-\newcommand{\FINSTRUCTOR}{Diplomi-insinööri A B}
+\newcommand{\INSTRUCTOR}{XXX Ari-Pekka Koponen}
+\newcommand{\FINSTRUCTOR}{FM Ari-Pekka Koponen}
 
 % Other stuff
 % ------------------------------------------------------------------
-\newcommand{\PROFESSORSHIP}{Security and Cloud Computing}
-\newcommand{\FPROFESSORSHIP}{Tietoturva ja pilvilaskenta}
+\newcommand{\PROFESSORSHIP}{}
+\newcommand{\FPROFESSORSHIP}{}
 % Professorship code is the same in all languages
-\newcommand{\PROFCODE}{SCI3084}
-\newcommand{\KEYWORDS}{Kata Containers, Kubernetes, Far Edge Cloud, Mobile Edge Computing, Container, Security, I/O performance}
-\newcommand{\FKEYWORDS}{Kata Containers, Kubernetes, Far Edge Cloud, mobiiliverkko, ohjelmistokontti, tietoturva, suorituskyky}
+\newcommand{\PROFCODE}{}
+\newcommand{\KEYWORDS}{}
+\newcommand{\FKEYWORDS}{}
 \newcommand{\LANGUAGE}{English}
 \newcommand{\FLANGUAGE}{Englanti}
 
@@ -210,9 +211,10 @@
 % have a hyphen in them (for example, if you write ``structure-modification 
 % operation'', the word structure-modification will never be hyphenated).
 % You need a special package to hyphenate those words.
-\hyphenation{di-gi-taa-li-sta yksi-suun-tai-sta}
+\hyphenation{}
 
-
+% added to remove error regarding comments / Pholm
+\setlength {\marginparwidth }{2cm}
 
 % The preamble ends here, and the document begins. 
 % Place all formatting commands and such before this line.
@@ -229,7 +231,6 @@
 % These control in which language the cover-page information is shown
 \pagenumbering{roman}
 \coverpage{english}
-
 
 
 % Abstracts
@@ -314,12 +315,20 @@
 % Edit the content in these files, rename them as necessary.
 % ------------------------------------------------------------------
 
+\input{LaTeX/10-introduction}
+
+\input{LaTeX/20-background}
+
+\input{LaTeX/30-methodology}
+
+\input{LaTeX/40-discussion}
+
 
 % Load the bibliographic references
 % ------------------------------------------------------------------
 % You can use several .bib files:
 % \bibliography{thesis_sources,ietf_sources}
-\bibliography{sources}
+\bibliography{LaTeX/references}
 
 \appendix
 %\input{9appendix.tex}
