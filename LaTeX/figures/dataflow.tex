@@ -1,0 +1,27 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[]
+
+%Nodes
+\node[entity]      (teamswa)        {active teams with WA adoption};
+\node[entity]      (teams)          [above=of teamswa] {team information};
+\node[entity]      (snapshots)       [left=of teams] {team snapshots};
+\node[entity]       (mau)           [right=of teams] {monthly active users};
+\node[entity]      (ctwa)       [below=of teamswa] {cycle time with WA adoption};
+\node[entity]      (cycletimes)       [left=of ctwa]     {team pr cycle times};
+\node[entity]      (adoption)       [left=of snapshots] {WA adoption};
+\node[entity]       (lm)        [below=of ctwa] {linear model input data};
+
+%Lines
+\draw[->] (cycletimes.east) -- (ctwa.west);
+\draw[->] (ctwa.south) -- (lm.north);
+\draw[->] (teamswa.south) -- (ctwa.north);
+\draw[->] (teams.south) -- (teamswa.north);
+\draw[->] (snapshots.south) -- (teamswa.north);
+\draw[->] (mau.south) -- (teamswa.north);
+\draw[->] (adoption.south) -- (teamswa.north);
+
+\end{tikzpicture}
+\caption{Data flow in BigQuery}
+\label{fig:dataFlow}
+\end{figure}

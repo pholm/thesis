@@ -1,0 +1,37 @@
+\begin{filecontents}{wa.data}
+was teams
+1 114
+2 73
+3 66
+4 55
+5 61
+6 33
+7 34
+8 27
+9 8
+10 6
+11 3
+12 3
+13 1
+14 1
+\end{filecontents}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+	x tick label style={
+		/pgf/number format/1000 sep=},
+	ylabel=Number of teams,
+        xlabel=Amount of WAs,
+	enlargelimits=0.05,
+	legend style={at={(0.5,-0.1)},
+	anchor=north,legend columns=-1},
+	ybar interval=0.8,
+]
+\addplot[fill=purple] table[x=was, y=teams] {wa.data};
+\end{axis}
+\end{tikzpicture}
+\caption{Teams' WA usage distribution}
+\label{fig:waDistribution}
+\end{figure}

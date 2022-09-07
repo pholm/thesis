@@ -1,0 +1,32 @@
+\begin{filecontents}{usage.data}
+type amount
+1 206 
+2 225
+3 315
+4 229
+5 148
+6 204
+7 219
+8 341
+9 111
+\end{filecontents}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+	x tick label style={
+		 rotate=45, anchor=east},
+	ylabel=Number of teams using,
+        xticklabels={\texttt{\detokenize{pull_request_linking}},\texttt{\detokenize{max_issue_age}},\texttt{\detokenize{max_pull_request_age}},\texttt{\detokenize{no_direct_pushes_to_main_branch}},\texttt{\detokenize{min_issue_contributors}},\texttt{\detokenize{wip_issues}},\texttt{\detokenize{wip_pull_requests}},\texttt{\detokenize{max_pull_request_review_time}}},
+	enlargelimits=0.05,
+	legend style={at={(0.5,-0.1)},
+	anchor=north,legend columns=-1},
+	ybar interval=0.8
+]
+\addplot[fill=purple] table[x=type, y=amount] {usage.data};
+\end{axis}
+\end{tikzpicture}
+\caption{Working Agreement usage}
+\label{fig:waPopularity}
+\end{figure}

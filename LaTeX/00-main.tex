@@ -68,6 +68,7 @@
 \usepackage[medium]{titlesec}
 \usepackage{listings}
 
+
 % The TikZ package allows you to create professional technical figures.
 % The learning curve is quite steep, but it is definitely worth it if 
 % you wish to have really good-looking technical figures. 
@@ -79,6 +80,7 @@
 \usetikzlibrary{decorations.pathmorphing,decorations.markings}
 \usetikzlibrary{shapes}
 \usetikzlibrary{patterns}
+\usetikzlibrary{er}
 
 
 % The aalto-thesis package provides typesetting instructions for the
@@ -95,6 +97,9 @@
 %\usepackage[mydraft,doublenumbering]{aalto-thesis}
 
 
+% package for plotting and compability version
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
 
 % Hyperref
 % ------------------------------------------------------------------
@@ -145,11 +150,11 @@
 % file line 72), so that the titles are in plural.
 
 % Example of one supervisor:
-\newcommand{\SUPERVISOR}{XXX Arto Hellas}
-\newcommand{\FSUPERVISOR}{XXX Arto Hellas}
+\newcommand{\SUPERVISOR}{PhD Arto Hellas}
+\newcommand{\FSUPERVISOR}{FT Arto Hellas}
 
 % If you have only one instructor, just write one name here
-\newcommand{\INSTRUCTOR}{XXX Ari-Pekka Koponen}
+\newcommand{\INSTRUCTOR}{MSc Ari-Pekka Koponen}
 \newcommand{\FINSTRUCTOR}{FM Ari-Pekka Koponen}
 
 % Other stuff
@@ -196,10 +201,11 @@
 % Bibliography style
 % acm style gives you a basic reference style. It works only with numbered
 % references.
-\bibliographystyle{acm}
+%\bibliographystyle{acm}
 % Plainnat is a plain style that works with both numbered and name citations.
 % \bibliographystyle{plainnat}
-
+% Custom bib style to remove first names
+\bibliographystyle{abbrvnat}
 
 % Extra hyphenation settings
 % ------------------------------------------------------------------
@@ -215,6 +221,8 @@
 
 % added to remove error regarding comments / Pholm
 \setlength {\marginparwidth }{2cm}
+
+
 
 % The preamble ends here, and the document begins. 
 % Place all formatting commands and such before this line.
@@ -238,7 +246,7 @@
 % Include an abstract in the language that the thesis is written in,
 % and if your native language is Finnish or Swedish, one in that language.
 
-%\input{0abstract.tex}
+\input{05-abstract.tex}
 
 
 % Acknowledgements

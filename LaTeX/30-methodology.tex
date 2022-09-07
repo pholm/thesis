@@ -9,35 +9,67 @@ To provide insight to the client teams, Swarmia integrates with issue trackers l
 
 Swarmia can be used by a team of any size. The teams include both teams working within software companies in addition to in-house development teams of non-software companies. 
 
-The data collected by Swarmia includes pull requests, git commits, automated test runs and issues. Furthermore, Swarmia has read-access to the source code, which is used to estimate the change complexity. Swarmia does not store the source code, but rather calculates the size of the change and stores it in a distinct database. 
+The data collected by Swarmia includes pull requests, git commits, automated test runs and issues. Furthermore, Swarmia has read-access to the source code, which is used to estimate the complexity of the change in question. Swarmia never stores the source code, but rather calculates the size of the change bundle and stores it in a distinct database. 
 
-One of the features in Swarmia is called Working Agreements. Teams can configure up to 8 of these agreements, which could be described as "team norms" or "collaboration guidelines". The agreements have to be selected from predefined pool, but each team can customise them to suit their use case. For example, a team could agree that they want to enforce linking pull requests to issues. Swarmia would then track the set condition automatically and inform the teams about the status of the agreement. 
+One of the features in Swarmia is called Working Agreements. Teams can configure up to 8 of these agreements, which could more generally be described as "team norms" or "collaboration guidelines". The agreements are be selected from predefined list of options, but each team can customise them to suit their use case. For example, a team could agree that they want to enforce linking pull requests to issues. Swarmia would then track the set condition automatically and inform the teams about the status of the agreement. 
+
+Working agreement options in Swarmia are presented in Figure \ref{fig:WorkingAgreements}.
+
+\input{LaTeX/figures/agreements.tex}
 
 - connection to the scientific background: DORA, some papers
-- screenshots of Swarmia
+- table with human readable wa name and the backend slug
+
+\begin{figure}[ht]
+    \begin{center}
+        \includegraphics[width=13.5cm]{LaTeX/images/improvement.png}
+        \caption{Working Agreements in Swarmia}
+        \label{fig:WorkingAgreements}
+    \end{center}
+\end{figure}
 
 \section{Research questions}
 
-The main research question of this thesis is to find out if Working Agreements can enhance productivity in self-managed software development teams. The hypothesis based on previous research is that as Working Agreements promote methods that are shown to accelerate software development, they should have direct impact on the team's productivity.
+The main research question of this thesis is to look into how teams use Working Agreements: which share of Swarmia teams use the feature and how these teams have configured their Working Agreements setup. 
 
-The second research question is to look into the Working Agreement composition in different teams and find out which of the agreements have the most impact in the teams performance. 
+The second research question is to find out if Working Agreements can enhance productivity in software development teams. The hypothesis based on previous research is that as Working Agreements promote methods that are shown to accelerate software development, they should have direct impact on the team's productivity. We are going to look into the Working Agreement composition in different teams and find out which of the agreements have the most impact on the teams performance. 
 
 \section{Approach}
 
-To answer RQ1, data of all teams using Working Agreements feature is analyzed. After finding potential patterns, a survey is sent to all members of all teams. The aim is to collect answers from at least 20 teams. In optimal situation, we would receive multiple answers from each team, giving a broader view on the team's dynamics and ways of working. 
+To answer RQ1, data from Swarmia is used to determine how many of the teams have enabled which Working Agreements. Furthermore, we look into how many Working Agreements teams usually have in use and what kind of parameters they have configured in Swarmia: for example, what is their WIP limit in \textit{Limit issues in progress} agreement? Lastly, team characteristics such as team size and their connection to Working Agreements setup is analysed. The RQ1 is approached with simple SQL queries. 
 
-Historical activity data is pulled from the teams' source control repositories and issue tracker boards. The data is aggregated weekly. As team's have enabled features in Swarmia in different schedule, the data collection period is determined individually for each. For each team, the period is 6 months long. 
+To answer RQ2, data of all teams using Working Agreements feature is collected and analyzed. Historical activity data is pulled from the teams' source control repositories. The data is aggregated weekly for 24-month period: some teams have been clients for longer than 2 years and some for shorter amount. This should not be a problem, as averages are used and the data collection period itself is not a variable in the analysis.
 
-The following metrics are derived from the data:
-\begin{enumerate}
-\item Pull Request Cycle Time
-\item Pull Request Review Time
-\item Issue Cycle Time
-\end{enumerate}
+The key metric to be used in the analysis is the Pull Request Cycle Time (PRCT). Even though Swarmia exports data also from issue trackers, these data sources were left out of the analysis based on the scope of the thesis.
 
-To answer RQ2, we bla
+The analysis is done in Google's BigQuery data warehouse in line with Swarmia's data handling policy. In addition to standard SQL queries, BigQuery has machine learning capabilities. For this thesis, the inbuilt linear regression feature was utilized. The data flow before building the regression model is presented in Figure \ref{fig:dataFlow}. 
 
-% problem: how to isolate WA impact from other Swarmia features?
+The training data is passed to linear regression in a form presented in Table \ref{table:trainingDataStructure}. The data has gone through two major modifications to better fit for the model. First, we have calculated an average PRCT for each team from the time before they have enabled any working agreements. This average is then subtracted from each rows PRCT to achieve normalized dataset: the aim is to diminish the differences between teams to achieve comparable PRCTs. Secondly, WA activation dates are mapped to 0/1 boolean values for each row: the value is 0 if WA has not been activated yet and 1 if it has.
+
+\input{LaTeX/figures/structure.tex}
+
+\input{LaTeX/figures/dataflow.tex}
+
+\section{Results}
+
+\subsection{RQ1 results}
+
+To get an overview on how teams are using Working Agreements, we started with the proportional popularity of WAs. As can be seen in Figure \ref{fig:waPopularity}, the agreements max\_pull\_request\_review\_time and max\_pull\_request\_age are the used the most, with over three hundred teams using them. Another atypical WA is min\_issue\_contributors, with approximately only 150 teams using.
+
+\input{LaTeX/figures/popularity.tex}
+
+A distribution of how many WAs each team has in use was calculated. The results are plotted in Figure \ref{fig:waDistribution}. Even though there exists eight Working Agreement templates, the number of WAs in use can exceed this: some templates can be configured multiple times for a single team. For example, max\_issue\_age can be configured distinctly for epics, stories, tasks and bugs. Still, only a small share of teams have configured more than eight WAs. 
+
+\input{LaTeX/figures/distribution.tex}
+
+\subsection{RQ2 results}
+
+
+
+
+
+
+
 
 
 
