@@ -22,9 +22,10 @@ type amount
 	enlargelimits=0.05,
 	legend style={at={(0.5,-0.1)},
 	anchor=north,legend columns=-1},
-	ybar interval=0.8
+	ybar interval=0.8,
+        ymin=0
 ]
-\addplot[fill=purple] table[x=type, y=amount] {usage.data};
+\addplot[fill=cyan] table[x=type, y=amount] {usage.data};
 \end{axis}
 \end{tikzpicture}
 \caption{Working Agreement usage}

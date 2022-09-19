@@ -1,0 +1,65 @@
+\begin{filecontents}{wip_issues.data}
+was teams
+1   120
+2   30
+3   6
+4   5
+5   5
+\end{filecontents}
+
+\begin{filecontents}{issue_ct.data}
+was teams
+1   150
+2   21
+3   3
+4   2
+5   5
+\end{filecontents}
+
+\begin{figure}
+\begin{subfigure}{.4\textwidth}
+    \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+    	x tick label style={
+    		/pgf/number format/1000 sep=},
+    	ylabel=Number of teams,
+            xlabel=Amount of options,
+    	enlargelimits=0.05,
+    	legend style={at={(0.5,-0.1)},
+    	anchor=north,legend columns=-1},
+    	ybar interval=0.8,
+            width=\linewidth,
+    ]
+    \addplot[fill=cyan] table[x=was, y=teams] {wip_issues.data};
+    \end{axis}
+    \end{tikzpicture}
+    \caption{wip\_issues}
+\end{subfigure}%
+\hfill
+\begin{subfigure}{.4\textwidth}
+    \centering
+    \begin{tikzpicture}[width=.5\textwidth]
+    \begin{axis}[
+    	x tick label style={
+    		/pgf/number format/1000 sep=},
+    	ylabel=Number of teams,
+            xlabel=Amount of options,
+    	enlargelimits=0.05,
+    	legend style={at={(0.5,-0.1)},
+    	anchor=north,legend columns=-1},
+    	ybar interval=0.8,
+            width=\linewidth,
+    ]
+    \addplot[fill=cyan] table[x=was, y=teams] {issue_ct.data};
+    \end{axis}
+    \end{tikzpicture}
+    \caption{max\_issue\_age}
+\end{subfigure}
+\caption{Issue related WA usage}
+\label{fig:issue_was}
+\end{figure}
+
+
+
+

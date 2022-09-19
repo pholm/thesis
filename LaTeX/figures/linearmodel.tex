@@ -1,0 +1,31 @@
+\renewcommand{\arraystretch}{1.5}
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|p{7cm}|p{3cm}|p{3cm}| } 
+\cline{2-3}
+& \multicolumn{2}{|c|}{Iteration}\\
+\hline
+
+Variable & (1) & (2) \\ [0.5ex]
+\hline\hline
+
+
+wip\_pull\_requests & $1.02^{**} \newline (p=0.00117)$ & $0.749^{*} \newline (p=0.0171)$\\
+max\_pull\_request\_age & $-0.404 \newline (p=0.229)$ & \\
+no\_direct\_pushes\_to\_main\_branch & $-1.35^{***} \newline (p=2.36*10^{-5})$ & $-0.951^{**} \newline (p=0.00343)$\\
+min\_issue\_contributors  & $0.700^* \newline (p=0.0480)$ & $0.491 \newline (p=0.219)$\\
+wip\_issues & $1.05^{**} \newline (p=0.00236)$ & $0.928^{*} \newline (p=0.0140)$\\
+max\_issue\_age  & $-1.23^{***} \newline (p=0.000329)$ & $-1.16^{**} \newline (p=0.00143)$\\
+max\_pull\_request\_review\_time  & $-0.287 \newline (p=0.383)$ & \\
+pull\_request\_linking  & $0.307 \newline (p=0.316)$ & \\
+github\_authors  & $0.0191 \newline (p=0.482)$ & \\
+swarmia\_users & $0.0899 \newline (p=0.150)$ & \\
+slack\_users & $-0.196^{**} \newline (p=0.000172)$ & $-0.111^{**} \newline (p=0.00190)$\\
+daily\_digest & $0.470 \newline (p=1.01)$ & \\
+
+\hline
+\end{tabular}
+\caption{Linear regression results, one asterisk \texttt{*} denotes  $p < 0.10$, two asterisks denotes $p < 0.05$, and three asterisks denote $p < 0.01$.}
+\label{tab:lmResults}
+\end{center}
+\end{table}

@@ -18,7 +18,6 @@ Working agreement options in Swarmia are presented in Figure \ref{fig:WorkingAgr
 \input{LaTeX/figures/agreements.tex}
 
 - connection to the scientific background: DORA, some papers
-- table with human readable wa name and the backend slug
 
 \begin{figure}[ht]
     \begin{center}
@@ -27,6 +26,10 @@ Working agreement options in Swarmia are presented in Figure \ref{fig:WorkingAgr
         \label{fig:WorkingAgreements}
     \end{center}
 \end{figure}
+
+\section{Data}
+
+\todo[inline]{tänne kuvaus järjestelmän keräämästä datasta}
 
 \section{Research questions}
 
@@ -38,39 +41,19 @@ The second research question is to find out if Working Agreements can enhance pr
 
 To answer RQ1, data from Swarmia is used to determine how many of the teams have enabled which Working Agreements. Furthermore, we look into how many Working Agreements teams usually have in use and what kind of parameters they have configured in Swarmia: for example, what is their WIP limit in \textit{Limit issues in progress} agreement? Lastly, team characteristics such as team size and their connection to Working Agreements setup is analysed. The RQ1 is approached with simple SQL queries. 
 
-To answer RQ2, data of all teams using Working Agreements feature is collected and analyzed. Historical activity data is pulled from the teams' source control repositories. The data is aggregated weekly for 24-month period: some teams have been clients for longer than 2 years and some for shorter amount. This should not be a problem, as averages are used and the data collection period itself is not a variable in the analysis.
+To answer RQ2, data of all teams using Working Agreements feature is collected and analyzed. Historical activity data is pulled from the teams' source control repositories. The data is aggregated weekly for 24-month period: some teams have been clients for longer than 2 years and some for shorter amount. This should not pose a problem, as averages are used and the data collection period itself is not a variable in the analysis.
 
-The key metric to be used in the analysis is the Pull Request Cycle Time (PRCT). Even though Swarmia exports data also from issue trackers, these data sources were left out of the analysis based on the scope of the thesis.
+The key metric to be used in the analysis is the Pull Request Cycle Time (PRCT). Even though Swarmia exports data also from issue trackers, these data sources were left out of the analysis based on the scope of the thesis. 
 
-The analysis is done in Google's BigQuery data warehouse in line with Swarmia's data handling policy. In addition to standard SQL queries, BigQuery has machine learning capabilities. For this thesis, the inbuilt linear regression feature was utilized. The data flow before building the regression model is presented in Figure \ref{fig:dataFlow}. 
+The analysis is done in Google's BigQuery data warehouse in line with Swarmia's privacy policy. In addition to standard SQL query engine, BigQuery has machine learning capabilities. For this thesis, the inbuilt linear regression feature was utilized. The data flow before building the regression model is presented in Figure \ref{fig:dataFlow}. 
 
-The training data is passed to linear regression in a form presented in Table \ref{table:trainingDataStructure}. The data has gone through two major modifications to better fit for the model. First, we have calculated an average PRCT for each team from the time before they have enabled any working agreements. This average is then subtracted from each rows PRCT to achieve normalized dataset: the aim is to diminish the differences between teams to achieve comparable PRCTs. Secondly, WA activation dates are mapped to 0/1 boolean values for each row: the value is 0 if WA has not been activated yet and 1 if it has.
+In regression analysis, we are looking into the relationship between independent variables and the dependent variable. The dependent variable is the one which, as a hypothesis, depends on the independent variables values. Respectively, the independent variables are the configuration of working agreements, amount of team members and Slack notification settings. 
+
+The training data is passed to linear regression in a form presented in Table \ref{tab:trainingDataStructure}. The data has gone through two major modifications to better fit for the model. First, we have calculated an average PRCT for each team from the time before they have enabled any working agreements. This average is then subtracted from each rows PRCT to achieve normalized dataset: the aim is to diminish the differences between teams to achieve comparable PRCTs. Secondly, WA activation dates are mapped to 0/1 boolean values for each row: the value is 0 if WA has not been activated yet and 1 if it has.
 
 \input{LaTeX/figures/structure.tex}
 
 \input{LaTeX/figures/dataflow.tex}
-
-\section{Results}
-
-\subsection{RQ1 results}
-
-To get an overview on how teams are using Working Agreements, we started with the proportional popularity of WAs. As can be seen in Figure \ref{fig:waPopularity}, the agreements max\_pull\_request\_review\_time and max\_pull\_request\_age are the used the most, with over three hundred teams using them. Another atypical WA is min\_issue\_contributors, with approximately only 150 teams using.
-
-\input{LaTeX/figures/popularity.tex}
-
-A distribution of how many WAs each team has in use was calculated. The results are plotted in Figure \ref{fig:waDistribution}. Even though there exists eight Working Agreement templates, the number of WAs in use can exceed this: some templates can be configured multiple times for a single team. For example, max\_issue\_age can be configured distinctly for epics, stories, tasks and bugs. Still, only a small share of teams have configured more than eight WAs. 
-
-\input{LaTeX/figures/distribution.tex}
-
-\subsection{RQ2 results}
-
-
-
-
-
-
-
-
 
 
 

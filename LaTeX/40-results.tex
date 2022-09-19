@@ -1,0 +1,61 @@
+
+\chapter{Results}
+
+\section{RQ1 results}
+
+To get an overview on how teams are using Working Agreements, we started with the proportional popularity of WAs. As can be seen in Figure \ref{fig:waPopularity}, the agreements max\_pull\_request\_review\_time and max\_pull\_request\_age are the used the most, with over three hundred teams using them. Another atypical WA is min\_issue\_contributors, with approximately only 150 teams using.
+
+\input{LaTeX/figures/popularity.tex}
+
+A distribution of how many WAs each team has in use was calculated. The results are plotted in Figure \ref{fig:waDistribution}. Even though there exists eight Working Agreement templates, the number of WAs in use can exceed this: issue related agreements can be configured multiple times for a single team. For example, max\_issue\_age can be configured distinctly for epics, stories, tasks and bugs. Still, only a small share of teams have configured more than eight WAs.
+
+\input{LaTeX/figures/issue_was.tex}
+
+\input{LaTeX/figures/distribution.tex}
+
+\section{RQ2 results}
+
+The main method used for RQ2 is the multiple linear regression model. The aim was to look into how Working Agreement configurations and other independent factors affect PRCT. 
+
+The results are presented in Table \ref{tab:lmResults}. The values in "Iteration" columns represent weight of the variable in days. The asterisks denote significance at 10/5/1\% confidence level.
+
+\input{LaTeX/figures/linearmodel.tex}
+
+% another way of presenting linear model results, maybe better than the table. How to show p value here?å
+%  metrics 9-11 are not boolean (amount of people), so they should be presented in other way.
+\begin{filecontents}{linearmodel.data}
+type    amount
+1       0.307
+2       -1.23
+3       -0.404
+4       -1.35
+5       0.700
+6       1.05
+7       1.02
+8       -0.287
+9       0.0191
+10      0.0899
+11      -0.196
+12      0.470
+13      1
+\end{filecontents}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+	x tick label style={
+		 rotate=45, anchor=east},
+	ylabel=Effect on PRCT,
+        xticklabels={\texttt{\detokenize{pull_request_linking}},\texttt{\detokenize{max_issue_age}},\texttt{\detokenize{max_pull_request_age}},\texttt{\detokenize{no_direct_pushes_to_main_branch}},\texttt{\detokenize{min_issue_contributors}},\texttt{\detokenize{wip_issues}},\texttt{\detokenize{wip_pull_requests}},\texttt{\detokenize{max_pull_request_review_time}}, \texttt{\detokenize{github_authors}},\texttt{\detokenize{swarmia_users}},\texttt{\detokenize{slack_users}},\texttt{\detokenize{daily_digest}}},
+	enlargelimits=0.05,
+	legend style={at={(0.5,-0.1)},
+	anchor=north,legend columns=-1},
+	ybar interval=0.8
+]
+\addplot[fill=cyan] table[x=type, y=amount] {linearmodel.data};
+\end{axis}
+\end{tikzpicture}
+\caption{Linear model results}
+\label{fig:lmResultsChart}
+\end{figure}
