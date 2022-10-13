@@ -1,6 +1,6 @@
-\begin{table}[h!]
+\begin{table}[h]
 \begin{center}
-\begin{tabular}{ |c|c| } 
+\begin{tabularx}{\textwidth}{ |l|X| } 
 \hline
 parameter & description \\ [0.5ex] 
 \hline\hline
@@ -13,13 +13,15 @@ max\_issue\_age  & WA status \\
 max\_pull\_request\_review\_time  & WA status \\
 pull\_request\_linking  & WA status \\
 ct\_days  & normalized cycle time in days \\
-github\_authors & members in GitHub team \\
-swarmia\_users & users in Swarmia team \\
-slack\_users & Swarmia members with Slack integration \\
-daily\_digest & Slack daily digest status \\
+github\_authors & Pull request authors \\
+swarmia\_users & MAU in Swarmia team \\
+slack\_users & Swarmia users with Slack notifications \\
+daily\_digest & team's Slack daily digest status \\
 \hline
-\end{tabular}
+\end{tabularx}
 \caption{Linear regression training data structure}
 \label{tab:trainingDataStructure}
 \end{center}
 \end{table}
+
+

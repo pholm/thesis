@@ -1,19 +1,22 @@
-\begin{table}[h!]
+\begin{table}[h]
 \centering
-\begin{tabular}{ |c|c| } 
+\begin{tabularx}{\textwidth}{ |l|X|l| }
 \hline
-option in Swarmia & computer readable \\ [0.5ex] 
+code & option in Swarmia UI & computer readable \\ [0.5ex] 
 \hline\hline
-Avoid pushing directly to the default branch & no\_direct\_pushes\_to\_main\_branch \\
-Avoid working alone & min\_issue\_contributors  \\
-Limit issues in progress & wip\_issues  \\
-Limit pull requests in progress & wip\_pull\_requests \\
-Link pull requests to issues & pull\_request\_linking  \\
-Reduce issue cycle time & max\_issue\_age  \\
-Reduce pull request cycle time & max\_pull\_request\_age \\
-Reduce pull request review time & max\_pull\_request\_review\_time  \\
+A & Limit pull requests in progress & wip\_pull\_requests \\
+B & Reduce pull request cycle time & max\_pull\_request\_age \\
+C & Avoid pushing directly to the default branch & no\_direct\_pushes\_to\_main\_branch \\
+D & Avoid working alone & min\_issue\_contributors  \\
+E & Limit issues in progress & wip\_issues  \\
+F & Reduce issue cycle time & max\_issue\_age  \\
+G & Reduce pull request review time & max\_pull\_request\_review\_time  \\
+H & Link pull requests to issues & pull\_request\_linking  \\
 \hline
-\end{tabular}
+\end{tabularx}
 \caption{Working Agreement options}
 \label{tab:workingAgreements}
 \end{table}
+
+
+

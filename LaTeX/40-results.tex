@@ -1,61 +1,39 @@
 
 \chapter{Results}
 
-\section{RQ1 results}
+\section{How teams use Working Agreements}
 
-To get an overview on how teams are using Working Agreements, we started with the proportional popularity of WAs. As can be seen in Figure \ref{fig:waPopularity}, the agreements max\_pull\_request\_review\_time and max\_pull\_request\_age are the used the most, with over three hundred teams using them. Another atypical WA is min\_issue\_contributors, with approximately only 150 teams using.
 
-\input{LaTeX/figures/popularity.tex}
+To get an overview on how teams are using Working Agreements, we started with the proportional popularity of WAs. As can be seen in Figure \ref{fig:waPopularity}, the agreements \textit{max\_pull\_request\_review\_time} and \textit{max\_pull\_request\_age} are used the most, with over three hundred teams. Another atypical WA is \textit{min\_issue\_contributors}, with approximately 150 teams. The rest of the Working Agreements are used by approximately two hundred teams each.
 
-A distribution of how many WAs each team has in use was calculated. The results are plotted in Figure \ref{fig:waDistribution}. Even though there exists eight Working Agreement templates, the number of WAs in use can exceed this: issue related agreements can be configured multiple times for a single team. For example, max\_issue\_age can be configured distinctly for epics, stories, tasks and bugs. Still, only a small share of teams have configured more than eight WAs.
+\input{LaTeX/figures/wa_usage.tex}
 
-\input{LaTeX/figures/issue_was.tex}
+A distribution of how many WAs each team has in use was calculated. The results are plotted in Figure \ref{fig:waDistribution}. Even though there exists eight Working Agreement templates, the number of WAs in use can exceed this: issue related agreements can be configured multiple times for a single team. For example, \textit{max\_issue\_age} can be configured distinctly for epics, stories, tasks and bugs. Still, only a small share of teams have configured more than eight WAs.
 
 \input{LaTeX/figures/distribution.tex}
 
-\section{RQ2 results}
+Finally, the usage of issue related Working Agreements was looked into. Figure \ref{fig:issue_was} shows that for all three templates, it is quite rare for a team to configure more than one Working Agreement. The distribution of issue types in these three Working Agreements is shown in Table \ref{tab:issueConfig}. Story is by far the most popular issue type with 359 configured Working Agreements. On the other hand, bug is the least used with only 36 WAs, a huge difference to story.
 
-The main method used for RQ2 is the multiple linear regression model. The aim was to look into how Working Agreement configurations and other independent factors affect PRCT. 
+\input{LaTeX/figures/issueconfig.tex}
 
-The results are presented in Table \ref{tab:lmResults}. The values in "Iteration" columns represent weight of the variable in days. The asterisks denote significance at 10/5/1\% confidence level.
+\todo[inline]{configs of working agreements?}
+\todo[inline]{if no interesting config connection, remove issue was}
+\input{LaTeX/figures/issue_was.tex}
+
+\section{Working Agreements and team productivity}
+
+The main method used to answer RQ2 is the multiple linear regression model. The aim was to find out how Working Agreement configurations and other independent factors affect PRCT. The results are presented in Table \ref{tab:lmResults}. The values in "Iteration" columns represent weight of the variable in days: a negative values therefore imply decrease in PRCT, while positive values imply increase. Additionally, the same information is visualised in Figure \ref{fig:lmResultsChart}. 
+
+As can be seen in the Figure, \textit{max\_issue\_age} and \textit{no\_direct\_pushes\_to\_main\_branch} have the most significant decreasing effect on PRCT. On the other hand, \textit{min\issue\_contributors}, \textit{wip\_issues} and \textit{wip\_pull\_requests} have the highest increasing impact. All of these results have statistical relevance, with $ p < 0.10 $.
+
+\textit{slack\_users} has weight -0.196 with $ p < 0.01 $. It's relevant to point out that while WA related variables have Boolean values, user related metrics don't: they are measured in absolute team members. Therefore, while the \textit{slack\_users} weight is relatively small, it can have a larger impact on the PRCT than a single WA configuration.
+
+\input{LaTeX/figures/lmchart.tex}
 
 \input{LaTeX/figures/linearmodel.tex}
 
-% another way of presenting linear model results, maybe better than the table. How to show p value here?å
-%  metrics 9-11 are not boolean (amount of people), so they should be presented in other way.
-\begin{filecontents}{linearmodel.data}
-type    amount
-1       0.307
-2       -1.23
-3       -0.404
-4       -1.35
-5       0.700
-6       1.05
-7       1.02
-8       -0.287
-9       0.0191
-10      0.0899
-11      -0.196
-12      0.470
-13      1
-\end{filecontents}
+In progress cycle time results can be seen in Figure \ref{fig:lmInProgressChart}. The direction of effect is the same for most variables as in PRCT model. 
 
-\begin{figure}[h!]
-\centering
-\begin{tikzpicture}
-\begin{axis}[
-	x tick label style={
-		 rotate=45, anchor=east},
-	ylabel=Effect on PRCT,
-        xticklabels={\texttt{\detokenize{pull_request_linking}},\texttt{\detokenize{max_issue_age}},\texttt{\detokenize{max_pull_request_age}},\texttt{\detokenize{no_direct_pushes_to_main_branch}},\texttt{\detokenize{min_issue_contributors}},\texttt{\detokenize{wip_issues}},\texttt{\detokenize{wip_pull_requests}},\texttt{\detokenize{max_pull_request_review_time}}, \texttt{\detokenize{github_authors}},\texttt{\detokenize{swarmia_users}},\texttt{\detokenize{slack_users}},\texttt{\detokenize{daily_digest}}},
-	enlargelimits=0.05,
-	legend style={at={(0.5,-0.1)},
-	anchor=north,legend columns=-1},
-	ybar interval=0.8
-]
-\addplot[fill=cyan] table[x=type, y=amount] {linearmodel.data};
-\end{axis}
-\end{tikzpicture}
-\caption{Linear model results}
-\label{fig:lmResultsChart}
-\end{figure}
+\todo{deeper analysis}
+
+\input{LaTeX/figures/lmchart_ip.tex}

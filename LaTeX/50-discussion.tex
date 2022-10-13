@@ -1,59 +1,67 @@
 \chapter{Discussion}
 
+\section{Setup and configuration}
 
+As any goals, Working Agreements should be achievable. Unrealistic targets tend to be ignored by the team members and can decrease motivation. That said, it is valuable that teams configure Working Agreements by themselves. Not all WAs are suitable for all teams: for example branching strategy needs to be considered during the WA setup.  
 
-\section{Pohdintaa RQ2}
+Because Working Agreement templates are set by Swarmia, the client teams have limited capacity to select suitable WAs for their needs. There are certain presumptions made that might make the WAs less useful or even unusable for some teams: to get most value out of Swarmia, teams should work with widely accepted CI/CD practices. For example, measuring PR review time is not a very good WA for teams \todo{good example here}
 
-no direct pushes
-    - tiimit tekee muodollisia pr, ei katselmoida
-    - “pakko tehdä PR”
-    
-wip pull requests
-    - “tiimi yrittää vähentää monta asiaa on saman aikaisesti katseluputkessa”
-    - vähemmän PR listalla, eli vähemmän painetta pistää settejä putkesta läpi → pidempi PRCT
-    - koronan ja irtisanomisten vaikutus datasettiin
-    
-min issue contributors
-    - looginen, koska pitää olla useampia contributoreita
-    - enemmän väkeä → pidempi CT
-    
-wip issues
-    - sama efekti kuin wip pull requests
-    - “wip limitit ei ole kovin hyviä working agreementteja”
-    
-max issue age
-    - PR:t devaajien focus, issue sen sijaan project managerin (laajempi vastuu)
-    - kiinnostaa laajemmin PM:ää, katsoo daily digestia jne
-    - **minkä tyyppisten issueiden?**
-        - “minkä tyyppisissä issueissa saataisiin helpoimmat gainit”
-    - voiko olla, että tiimi tarvitsee “potkimista”
-    - → jos on buy-in sekä tiimiltä että managementilta, niin saa kaikista merkittävimpiä tuloksia?
-    
-slack users
-    - pitäisikö olla suhteellinen, eli osuus tiimin jäsenistä?
-    - isompi kuin swarmia users, koska swarmia users = MAU
-    - tää on merkittävä ja mielenkiintoinen
-    
-github authors
-    - onko aktiiviset eli laskutukseen käytettävä?
-    - → organisaation koko ei ole vaikuttava tekijä
-    - → minkä tahansa kokoisessa tiimissä otettiin ominaisuuksia käyttöön, niin muutosta saatiin aikaan
-    
-daily digest
-    - tiedetään että henk koht notificaatiot on tärkeitä (lähde)
-    - tiedetään että WA:t on tehokkaita, kun tiimi on vastuussa niistä ulkopuolelle tai PM:lle (lähde)
-    
-max pull request age
-    - drafteja?
-    - tätä katsotaan helpommin läpi sormien devaajien keskuudessa
+\todo{build up to wa composition}
+Working Agreements are not intended to be used as primary performance metrics as themselves, but rather as a tool that helps teams achieve their objectives. Therefore, it's a safe assumption that teams aim to improve their productivity by enabling WAs. Most teams enabled just a few Working Agreements. 
+
+Of course, most of the practices that WAs introduce are already in use in the teams. By using Working Agreements, teams get up-to-date information of their track record and ensure that the rules are followed also in the future.  
 
 
 
+Teams usually configure only one Working Agreement per template. This might be a result of poor communication of the fact that it's possible to have multiple issue-related Working Agreements. The fact that story is the most popular issue type suggests that most Swarmia teams are acclimated to work with stories, while epics, bugs and tasks are not as used. 
+
+\section{How Working Agreements effect could be explained}
+
+\todo[inline]{summary of most relevant RQ2 results in one chapter}
+
+Next, we will go through all independent variables with a significance and the potential underlying reasons for the weights. 
+
+Both work in progress limits increase PRCT. Especially interesting is the fact that wip\_pull\_requests increases also IPCT. By introducing a WIP working agreement, teams try to limit issues or pull requests in their desk. By shortening the list, the teams subsequently reduce their pressure to push items through the process. It might not seem so urgent to get PRs reviewed if there is only a couple of them: in contrast, a dozen of pending PRs would most definitely trigger someone from the team to prioritize reviews. Overall, WIP limits are not very effective working agreements and according to the results, can even have a prolonging effect on cycle times. 
+
+no\_direct\_pushes\_to\_main\_branch forces team members to work through pull requests instead of blindly merging their changes to the main branch. The significant effect on PRCT is quite predictable. By forcing such a working habit, the teams implement a system where pull requests are \textit{formally} reviewed, while in reality many PRs are made just to comply with the working agreement and potential branch protection rules. These for-the-sake-of-it PRs pull down the PRCT.
+
+Another intuitive consequence can be seen in min\_issue\_contributors. As the authors are encouraged to work together on issues, the time needed for communication and other collaboration-related overhead causes the PRCT to grow.
+
+In some teams, pull requests are created long before the authors see the changes fit for merge. These draft PRs affect the PRCT. Teams may overlook the importance of max\_pull\_request\_age, especially when compared to max\_issue\_age. The gap between max\_issue\_age and max\_pull\_request\_age suggests that focusing on issue throughput instead of pull requests has more effect on PRCT. The answer could lie in the fact that issues are more visible to non-developers and therefore of interest to internal stakeholders such as product managers and upper management. Furthermore, in Agile daily stand-ups, it is a common convention to go through issue boards as a team. Even though studies have promoted the empowering of individual contributors and self-management, the result indicates that team productivity benefits from an external push.
+
+\todo[inline]{minkä tyyppisissä issueissa saataisiin helpoimmat gainit (what)}
+
+max\_pull\_request\_review\_time
+
+pull\_request\_linking
+
+\todo[inline]{getting back to literature}
+
+\section{Personal and team motivation}
+
+In Accelerate, authors argue teams should be able to choose their methods and tools. Even though the study only handles monthly active users, it's hard to know their commitment to Swarmia: did they collectively decide to use such a tool and if they did, were the working agreements selected as a team or by a manager? Moreover, the teams' overall motivation for improvement stays unknown. 
+
+Team members' behaviour was observed through three metrics. Even though only slack\_users had statistical significance for cycle times, these metrics can have other influence on team productivity. Amount of weekly PR authors, which we assume correlates strongly with team size, did not have a relationship to the cycle times. Although team size and especially the changes in team composition are often considered to be team performance degrading factors, the results show that team size and cycle times have no connection. 
+
+Slack users, with a weight of $-0.1$ per user, implicates that personal Slack notifications do have a decreasing impact on cycle times. On the other hand, daily\_digest fails to influence cycle time. Teams can integrate the daily digest to their own communication channel or dedicate an own channel for it. As with any high-volume mediums, these channels can be flooded with content, causing the daily digest to be missed or simply ignored by the team members. Meanwhile, direct message continues to be an efficient way to reach individual contributors. Companies implementing DM notifications should although be careful to not needlessly spam the developers. Based on the results, Swarmia seems to have succeeded in creating a valuable personal notification experience. 
 
 
+\todo{think if there is point going through metrics that were not in the model. And what about those that did not have significance}
+
+swarmia\_users
+\begin{enumerate}
+    \item{removed from the model}
+    \item{same indications as with github\_authors? }
+\end{enumerate}
+
+\section{Super deep stuff about RQ2}
 
 
 \section{Limitations}
+
 \todo[inline]{only one category of metrics -> against SPACE principles}
 \todo[inline]{harder to get metrics, such as perceived performance, would help with finding a balance}
 \todo[inline]{only "fastness of shipping" taken into consideration, what about change failure rate etc (quality)}
+\todo[inline]{koronan ja irtisanomisten vaikutus datasettiin}
+\todo[inline]{only teams with at least 1 WA considered. What about those that have none? Why they opted out of the features}
+

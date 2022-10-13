@@ -1,0 +1,49 @@
+% another way of presenting linear model results, maybe better than the table. How to show p value here?å
+%  metrics 9-11 are not boolean (amount of people), so they should be presented in other way.
+\begin{filecontents}{linearmodel_ip.data}
+type    amount      p
+1    1.55262826067878    ***
+2    -0.234697922043722    \nan
+3    -1.00973405990083    **
+4    0.682170335849312    \nan
+5    0.698565767442738    \nan
+6    1.07083700224552    **
+7    -1.50650881760295    ***
+8    -0.252902503872395    \nan
+9    -0.0772665164223861    \nan
+10    -0.595349555897268    *
+11    1                    \nan
+\end{filecontents}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+	x tick label style={
+		 rotate=45, anchor=east},
+	ylabel=Effect on IPCT,
+        xticklabels={\texttt{\detokenize{wip_pull_requests}},
+                    \texttt{\detokenize{max_pull_request_age}},
+                    \texttt{\detokenize{no_direct_pushes_to_main_branch}},
+                    \texttt{\detokenize{min_issue_contributors}},
+                    \texttt{\detokenize{wip_issues}},
+                    \texttt{\detokenize{max_issue_age}},
+                    \texttt{\detokenize{max_pull_request_review_time}},
+                    \texttt{\detokenize{pull_request_linking}},
+                     \texttt{\detokenize{slack_users}},
+                     \texttt{\detokenize{daily_digest}}},
+	enlargelimits=0.05,
+	legend style={at={(0.5,-0.1)},
+	anchor=north,legend columns=-1},
+        nodes near coords,
+        every node near coord/.append style={anchor=west},
+        point meta=explicit symbolic,
+        enlarge y limits=0.2,
+	ybar interval=0.8
+]
+\addplot[fill=cyan] table[x=type, y=amount, meta=p] {linearmodel_ip.data};
+\end{axis}
+\end{tikzpicture}
+\caption{Linear regression results for IPCT}
+\label{fig:lmInProgressChart}
+\end{figure}

@@ -5,21 +5,15 @@
 
 Swarmia is a Software as a Service tool for software development teams. Teams utilize Swarmia to measure their performance and find potential places of improvement in their development pipeline. Swarmia is designed to help teams work in a self-managed manner. 
 
-To provide insight to the client teams, Swarmia integrates with issue trackers like Jira and version control systems like GitHub. The teams are then provided with insights that is accessible to all team members through Swarmia web application. In addition, Swarmia can be configured to push updates to the teams Slack channel. 
+To provide insight to the client teams, Swarmia integrates with issue trackers like Jira and version control systems like GitHub. The teams are then provided with insights that are accessible to all team members through Swarmia web application. In addition, Swarmia can be configured to push updates to the team's Slack channel. Swarmia can be used by a team of any size: the teams include both teams working within software companies in addition to in-house development teams of non-software companies. 
 
-Swarmia can be used by a team of any size. The teams include both teams working within software companies in addition to in-house development teams of non-software companies. 
-
-The data collected by Swarmia includes pull requests, git commits, automated test runs and issues. Furthermore, Swarmia has read-access to the source code, which is used to estimate the complexity of the change in question. Swarmia never stores the source code, but rather calculates the size of the change bundle and stores it in a distinct database. 
-
-One of the features in Swarmia is called Working Agreements. Teams can configure up to 8 of these agreements, which could more generally be described as "team norms" or "collaboration guidelines". The agreements are be selected from predefined list of options, but each team can customise them to suit their use case. For example, a team could agree that they want to enforce linking pull requests to issues. Swarmia would then track the set condition automatically and inform the teams about the status of the agreement. 
+One of the features in Swarmia is called Working Agreements. Teams can configure up to eight of these agreements, which could more generally be described as team norms or collaboration guidelines. The agreements are selected from a predefined list of options: each team can customise them to suit their use case. For example, a team could agree that they want to enforce linking pull requests to issues. Swarmia would then track the set condition automatically and inform the teams about the status of the agreement. 
 
 Working agreement options in Swarmia are presented in Figure \ref{fig:WorkingAgreements}.
 
 \input{LaTeX/figures/agreements.tex}
 
-- connection to the scientific background: DORA, some papers
-
-\begin{figure}[ht]
+\begin{figure}[h]
     \begin{center}
         \includegraphics[width=13.5cm]{LaTeX/images/improvement.png}
         \caption{Working Agreements in Swarmia}
@@ -29,7 +23,17 @@ Working agreement options in Swarmia are presented in Figure \ref{fig:WorkingAgr
 
 \section{Data}
 
-\todo[inline]{tänne kuvaus järjestelmän keräämästä datasta}
+The data collected by Swarmia includes for example pull requests, issues and failed deployments. Furthermore, Swarmia has read-only access to the source code, which is used to estimate the complexity of the change in question. Swarmia never stores client code, but instead calculates the size of the change bundle and stores it in a distinct database. 
+
+Processing of the data is done in Google's BigQuery data warehouse service. Most of the information needed is already collected at Swarmia for business intelligence purposes, but needs to be structured to suitable format. The data flow is shown in Figure \ref{fig:dataFlow}.
+
+\input{LaTeX/figures/dataflow.tex}
+
+For the purpose of this study, weekly aggregates of team metrics were exported from Swarmia backend to BigQuery. This data set is called "team pr cycle times" in Figure \ref{fig:dataFlow}. These metrics were joined with team basic information, working agreement usage and team member activity. Finally, team identifiers and timestamps were removed so that the data points would be independent. A sample of resulting data is displayed in Table \ref{tab:dataExample}.
+
+\input{LaTeX/figures/dataexamples.tex}
+
+\todo[inline]{describe all variables. some of this is in approach already}
 
 \section{Research questions}
 
@@ -41,19 +45,39 @@ The second research question is to find out if Working Agreements can enhance pr
 
 To answer RQ1, data from Swarmia is used to determine how many of the teams have enabled which Working Agreements. Furthermore, we look into how many Working Agreements teams usually have in use and what kind of parameters they have configured in Swarmia: for example, what is their WIP limit in \textit{Limit issues in progress} agreement? Lastly, team characteristics such as team size and their connection to Working Agreements setup is analysed. The RQ1 is approached with simple SQL queries. 
 
-To answer RQ2, data of all teams using Working Agreements feature is collected and analyzed. Historical activity data is pulled from the teams' source control repositories. The data is aggregated weekly for 24-month period: some teams have been clients for longer than 2 years and some for shorter amount. This should not pose a problem, as averages are used and the data collection period itself is not a variable in the analysis.
+To answer RQ2, data from all teams using Working Agreements feature is collected and analyzed. Historical activity data is pulled from the teams' source control repositories. The data is aggregated weekly for 24-month period: some teams have been clients for longer than 2 years and some for shorter amount. This should not pose a problem, as averages are used and the data collection period itself is not a variable in the analysis.
 
-The key metric to be used in the analysis is the Pull Request Cycle Time (PRCT). Even though Swarmia exports data also from issue trackers, these data sources were left out of the analysis based on the scope of the thesis. 
+The key metric to be used in the analysis is the Pull Request Cycle Time (PRCT). Even though Swarmia exports data also from issue trackers, these data sources were left out of the analysis based on the scope of the thesis. The analysis is done in BigQuery in line with Swarmia's privacy policy. In addition to standard SQL query engine, BigQuery offers machine learning capabilities. For this thesis, the inbuilt linear regression feature was utilized. The data flow before building the regression model is presented in Figure \ref{fig:dataFlow}. 
 
-The analysis is done in Google's BigQuery data warehouse in line with Swarmia's privacy policy. In addition to standard SQL query engine, BigQuery has machine learning capabilities. For this thesis, the inbuilt linear regression feature was utilized. The data flow before building the regression model is presented in Figure \ref{fig:dataFlow}. 
+In linear regression, we are looking into the relationship between independent variables and the dependent variable. The dependent variable is the one which, as a hypothesis, depends on the independent variables values. Respectively, the independent variables are the configuration of working agreements, team member metrics and Slack notification settings. 
 
-In regression analysis, we are looking into the relationship between independent variables and the dependent variable. The dependent variable is the one which, as a hypothesis, depends on the independent variables values. Respectively, the independent variables are the configuration of working agreements, amount of team members and Slack notification settings. 
+\input{LaTeX/figures/correlationmatrix.tex}
 
-The training data is passed to linear regression in a form presented in Table \ref{tab:trainingDataStructure}. The data has gone through two major modifications to better fit for the model. First, we have calculated an average PRCT for each team from the time before they have enabled any working agreements. This average is then subtracted from each rows PRCT to achieve normalized dataset: the aim is to diminish the differences between teams to achieve comparable PRCTs. Secondly, WA activation dates are mapped to 0/1 boolean values for each row: the value is 0 if WA has not been activated yet and 1 if it has.
+Pearson correlation coefficient for independent variables is calculated in Table \ref{tab:correlationMatrix} to ensure the data is compatible for linear regression analysis: two variables should not correlate for the model to work as expected. The largest correlation encountered is the of slack\_users and swarmia\_users with a value of 0.84. The pairs with high correlation are those that deal with same themes, for example WAs related to pull requests. Even though some of the WAs do correlate, the data can be used for the model with slight modifications: github\_authors and swarmia\_users were dropped to include only team member metric, slack\_users. 
+
+Linear regression can be formulated as follows:
+
+\begin{equation}
+Y = \beta_0 + \beta_i X_i + \beta_{i+1} X_{i+1} + \ldots + \beta_n X_n + \epsilon
+\end{equation}
+
+where \newline
+$Y$: dependent variable \newline
+$\beta_0$: constant coefficient (intercept) \newline
+$\beta_i$: slope for $X_i$ \newline
+$X_i$: independent variable \newline
+$\epsilon$: error \newline \newline
+
+The training data is passed to linear regression in a form presented in Table \ref{tab:trainingDataStructure}. The data has gone through two major modifications to suit linear regression. First, we have calculated an average PRCT for each team from the time before they have enabled any working agreements. This average is then subtracted from each rows PRCT to achieve a normalized data set: the aim is to diminish the differences between teams to achieve comparable PRCTs. Secondly, WA activation dates are mapped to Boolean values for each row: the value is 0 if WA has not been activated yet and 1 if it has.
+
+At first, there were three team member related metrics: github\_authors, swarmia\_users and slack\_users. It turned out that swarmia\_users didn't have statistical significance and it correlated quite strongly with github\_users. In the end, out of the three metrics only slack\_users was retained for the final model.
+
+The model was also run with PRCT components: time in progress, in review and ready to merge. The aim was to investigate which part of the process the independent variables particularly influence. Only modeling against in progress cycle time (IPCT) produced results with statistical significance.  
+
+%The model was run two times with different independent variable sets. The second iteration was constructed with the variables that had statistical significance in the first iteration.
 
 \input{LaTeX/figures/structure.tex}
 
-\input{LaTeX/figures/dataflow.tex}
 
 
 

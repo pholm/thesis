@@ -101,13 +101,13 @@ In this thesis, we use Lead Time to refer to the time from the first commit to a
 
 Originally in the Toyota Production System, batch size was used as a key performance metric. DORA researchers note that in the software development context, batch size is a sub-optimal metric. They have therefore used Deployment Frequency as a proxy to estimate batch size. Deployment Frequency is defined as the frequency of pushing a new version to the production environment.  
 
-Both Lead Time and Deployment Frequency are metrics for the "software delivery performance tempo". To determine if the increase in tempo has disadvantages in terms of software quality or system stability, two additional metrics are used: Mean Time to Restore and Change Fail Percentage. Both of these measure situations where the production system has failed. The authors articulate that as in rapidly changing software systems failure is a common situation, the absolute amount of failures is an obsolete metric. Rather, they find that the time taken to restore the service or application after a incident takes or how large percentage of changes lead to a production system failure. 
+Both Lead Time and Deployment Frequency are metrics for the "software delivery performance tempo". To determine if the increase in tempo has disadvantages in terms of software quality or system stability, two additional metrics are used: Mean Time to Restore and Change Fail Percentage. Both of these measure situations where the production environment has failed. The authors articulate that as in rapidly changing software systems failure is a common situation, the absolute amount of failures is an obsolete metric. Rather, they find that the time taken to restore the service or application after a incident takes or how large percentage of changes lead to a production system failure. 
 
 In Accelerate, the results are clear: increasing software delivery tempo has no negative impact on the stability or quality. Instead, teams that perform well in the first two metrics also had better results in the rest measures. 
 
 A more recent work from the DORA team is called the SPACE framework. The SPACE framework is named after it's dimensions: satisfaction and well-being; performance; activity; communication and collaboration; and efficiency and flow. The framework extends DORA metrics by including for example perceived metrics. 
 
-The researchers argue that productivity measurement should not rely on single metric, but rather include at least three metrics from the SPACE dimensions. Furthermore, the metrics should include both quantitative and qualitative metrics as well as individual and team level metrics. Also, measures of performance on organizational level are seen as critical to get comprehensive image of productivity. 
+The researchers argue that productivity measurement should not rely on a single metric, but rather include at least three metrics from the SPACE dimensions. Furthermore, the metrics should include both quantitative and qualitative metrics as well as individual and team level metrics. Also, measures of performance on organizational level are seen as critical to get comprehensive image of productivity. 
 
 In the SPACE publication, a set of example metrics are proposed to concretize the framework. These proposals are not to be taken into use as is, but rather serve as a inspiration for those developing productivity tracking systems.~\cite{forsgren_space_2021}
 
@@ -121,9 +121,9 @@ In software engineering, teams work together to design, develop and maintain pro
 
 Modern software development methods encourage, or even require, self-managing teams~\cite{moe_teamwork_2010}. Other terms used to define the phenomena include self-organizing team, autonomous team and empowered team. Even though majority of studies report that forming self-managing teams leads to positive outcomes, there have also been opposing conclusions. Factors such as insufficient leadership or wider nature of the situation can lead to the difficulty of implementation of such a team~\cite{moe_teamwork_2010}. 
 
-To enable true self-management within a team, company leadership and other internal stakeholders have to respect the teams independence and improvement efforts~\cite{moe_overcoming_2010}. Additionally, teams are not usually designated with a leader: rather, they are expected to form processes for a shared leadership function. Even though shared leadership can lead to better functioning teams, it adds more complexity and requires better cohesion and communication.~\cite{solansky_leadership_2008}
+To enable true self-management within a team, company leadership and other internal stakeholders have to respect the team's independence and improvement efforts~\cite{moe_overcoming_2010}. Additionally, teams are not usually designated with a leader: rather, they are expected to form processes for a shared leadership function. Even though shared leadership can lead to better functioning teams, it adds more complexity and requires better cohesion and communication.~\cite{solansky_leadership_2008}
 
-To improve, self-managing teams have to change their behavior, either by self-managing or from an external stimulus. Teams that are able to self-improve can achieve more autonomy than their counterparts. Norms, standards that regulate team members behaviors, are of essence when building a productive software development team~\cite{abrahamsson_exploring_2016}. Norms can include both technical and non-technical rules: for example, teams can commit to test-driven development or to promoting pair programming. The impact of norms for development teams is achieved through increased simplicity of common processes: team members can trust that their colleagues do certain activities and refrain from the unwanted ones~\cite{abrahamsson_exploring_2016}. 
+To improve, self-managing teams have to change their behavior, either by self-managing or from an external stimulus. Teams that are able to self-improve can achieve more autonomy than their counterparts. Norms, standards that regulate team members' behaviour, are of essence when building a productive software development team~\cite{abrahamsson_exploring_2016}. Norms can include both technical and non-technical rules: for example, teams can commit to test-driven development or to promoting pair programming. The impact of norms for development teams is achieved through increased simplicity of common processes: team members can trust that their colleagues do certain activities and refrain from the unwanted ones~\cite{abrahamsson_exploring_2016}. 
 
 Team norms can be formed in two ways: either by organically within the team or by others, or as part of organization's guidelines or direct influence~\cite{teh_social_2012}. Agile teams tune their ways of working during sprint retrospective meetings. Teams can also host dedicated sessions to discuss their norms and many SDLCs encourage teams to regularly review their methods. To enforce the norms, teams use whiteboards, notifications or other reminders to refresh their memory and keep each other accountable. 
 
@@ -132,3 +132,12 @@ Teams use a large amount of tools to facilitate their work. Issue trackers like 
 \todo[inline]{emerging tools for team productivity (studies?)}
 \todo[inline]{team norms tracking tools}
 
+\todo[inline]{git branching strategies
+
+gitflow
+
+github flow?
+
+trunk-based
+
+}

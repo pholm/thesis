@@ -1,14 +1,14 @@
-\begin{figure}[h!]
+\begin{figure}[h]
 \centering
 \begin{tikzpicture}[]
 
 %Nodes
 \node[entity]      (teamswa)        {active teams with WA adoption};
-\node[entity]      (teams)          [above=of teamswa] {team information};
+\node[entity]      (teams)          [above=of teamswa] {team basic info};
 \node[entity]      (snapshots)       [left=of teams] {team snapshots};
-\node[entity]       (mau)           [right=of teams] {monthly active users};
-\node[entity]      (ctwa)       [below=of teamswa] {cycle time with WA adoption};
-\node[entity]      (cycletimes)       [left=of ctwa]     {team pr cycle times};
+\node[entity]       (mau)           [right=of teams] {MAU};
+\node[entity]      (ctwa)       [below=of teamswa] {cycle times with WA adoption};
+\node[entity]      (cycletimes)       [left=of ctwa]     {team PR cycle times};
 \node[entity]      (adoption)       [left=of snapshots] {WA adoption};
 \node[entity]       (lm)        [below=of ctwa] {linear model input data};
 
