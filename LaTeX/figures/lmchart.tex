@@ -39,8 +39,8 @@ type    amount      p
         every node near coord/.append style={anchor=west},
         point meta=explicit symbolic,
         enlarge y limits=0.2,
-	ybar interval=0.8,
-        width=\textwidth
+	ybar interval=0.8
+        %width=\textwidth
 ]
 \addplot[fill=cyan] table[x=type, y=amount, meta=p] {linearmodel.data};
 \end{axis}

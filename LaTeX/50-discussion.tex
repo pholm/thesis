@@ -1,67 +1,68 @@
 \chapter{Discussion}
 
-\section{Setup and configuration}
+\section{Selecting Working Agreements}
 
-As any goals, Working Agreements should be achievable. Unrealistic targets tend to be ignored by the team members and can decrease motivation. That said, it is valuable that teams configure Working Agreements by themselves. Not all WAs are suitable for all teams: for example branching strategy needs to be considered during the WA setup.  
+As with any goal, Working Agreements should be achievable. Unrealistic targets tend to be ignored by the team members and can decrease motivation. That said, it is valuable that teams configure Working Agreements left to their own devices. Not all WAs are suitable for all teams: for example, branching strategy needs to be considered during the WA setup.  
 
-Because Working Agreement templates are set by Swarmia, the client teams have limited capacity to select suitable WAs for their needs. There are certain presumptions made that might make the WAs less useful or even unusable for some teams: to get most value out of Swarmia, teams should work with widely accepted CI/CD practices. For example, measuring PR review time is not a very good WA for teams \todo{good example here}
+Because Working Agreement templates are set by Swarmia, the client teams have limited capacity to select suitable WAs for their needs. Certain presumptions made might make the WAs less valuable or even unusable for some teams: to get the most value out of Swarmia, teams should work with widely accepted CI/CD practices. 
 
-\todo{build up to wa composition}
-Working Agreements are not intended to be used as primary performance metrics as themselves, but rather as a tool that helps teams achieve their objectives. Therefore, it's a safe assumption that teams aim to improve their productivity by enabling WAs. Most teams enabled just a few Working Agreements. 
+Working Agreements are not intended to be used as primary performance metrics but as a tool that helps teams achieve their objectives. Therefore, it is a safe assumption that teams aim to improve their productivity by enabling WAs. The two most popular WAs, max\_pull\_request\_review\_time and max\_pull\_request\_age, aim to reduce the pull request cycle time. It seems teams using Swarmia are keen on increasing their PR throughput. 
 
-Of course, most of the practices that WAs introduce are already in use in the teams. By using Working Agreements, teams get up-to-date information of their track record and ensure that the rules are followed also in the future.  
+Many practices that WAs introduce are already used in the teams. By using Working Agreements, teams get up-to-date information on their track record and ensure that the rules are followed in the future. 
 
+Most teams enable only a couple of Working Agreements: $64\%$ of teams have configured four or fewer agreements. Teams might test the feature with a couple of agreements and then decide to go all-in if the feature proves helpful. Furthermore, teams usually configure only one Working Agreement per template. A potential reason is related to feature discovery: the possibility of creating multiple agreements might need to be clarified for new teams. The fact that story is the most popular issue type suggests that most Swarmia teams are acclimated to using Swarmia for story tracking while epics, bugs, and tasks are tracked via other tools like GitHub or not at all.
 
+\section{Effect of Working Agreements}
 
-Teams usually configure only one Working Agreement per template. This might be a result of poor communication of the fact that it's possible to have multiple issue-related Working Agreements. The fact that story is the most popular issue type suggests that most Swarmia teams are acclimated to work with stories, while epics, bugs and tasks are not as used. 
+Next, we will go through all independent variables with a statistical significance and the potential underlying reasons for the perceived results.
 
-\section{How Working Agreements effect could be explained}
+wip\_pull\_requests increases PRCT with a weight of 1.28 and notably high confidence. Especially interesting is that it also increases IPCT. By introducing this working agreement, teams try to limit pull requests on their desk. As the agreement does not directly control the amount of open PRs, it should not form a bottleneck to the process. On the other hand, PR limit can result in larger batch size; amount of changes in a Pull Request increases, which again prolongs review times. While literature suggests that WIP limits are good for team productivity, it seems in some teams their overall processes don't support using them. 
 
-\todo[inline]{summary of most relevant RQ2 results in one chapter}
+no\_direct\_pushes\_to\_main\_branch encourages team members to work through pull requests instead of blindly merging their changes to the main branch. The significant effect on PRCT is quite predictable. By forcing such a working habit, the teams implement a system where pull requests are approved without a proper review: PRs are made just to comply with the working agreement and potential branch protection rules. These for-the-sake-of-it PRs pull down the PRCT: without the WA, PRs probably were made only for the larger changes. Even though the rule creates more friction between development and merging to main, reviewing all changes is considered a good practice and should increase code quality. A more relevant metric to measure this working agreement's potential would be, for example, change failure rate. 
 
-Next, we will go through all independent variables with a significance and the potential underlying reasons for the weights. 
+Pull request review times are considered as a common bottleneck in software development \cite{maddila_nudge_2022}. By enabling max\_pull\_request\_review\_time, teams try to encourage themselves to focus on closing open PRs faster. Often review times can prolong due to inactivity of the author or the reviewer. This is the only WA that the personal Slack notifications address: each team member can opt-in to receive direct messages for PRs pending on their contribution. The team daily digest also lists open PRs on top, again bringing them to the attention of developers. According to Maddila et al. actively notifying developers of open PRs shortens PR review time.~\cite{maddila_nudge_2022}
 
-Both work in progress limits increase PRCT. Especially interesting is the fact that wip\_pull\_requests increases also IPCT. By introducing a WIP working agreement, teams try to limit issues or pull requests in their desk. By shortening the list, the teams subsequently reduce their pressure to push items through the process. It might not seem so urgent to get PRs reviewed if there is only a couple of them: in contrast, a dozen of pending PRs would most definitely trigger someone from the team to prioritize reviews. Overall, WIP limits are not very effective working agreements and according to the results, can even have a prolonging effect on cycle times. 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=13.5cm]{LaTeX/images/daily-digest.png}
+    \caption{Daily Digest, a status report posted by the Slack integration}
+    \label{fig:daily_digest}
+\end{figure}
 
-no\_direct\_pushes\_to\_main\_branch forces team members to work through pull requests instead of blindly merging their changes to the main branch. The significant effect on PRCT is quite predictable. By forcing such a working habit, the teams implement a system where pull requests are \textit{formally} reviewed, while in reality many PRs are made just to comply with the working agreement and potential branch protection rules. These for-the-sake-of-it PRs pull down the PRCT.
+The rest of the WAs proved no results that could be trusted due to the lack of statistical significance. It's worth noting that not all Working Agreements aim to reduce cycle times and therefore it is natural that there won't be a direct connection.
 
-Another intuitive consequence can be seen in min\_issue\_contributors. As the authors are encouraged to work together on issues, the time needed for communication and other collaboration-related overhead causes the PRCT to grow.
+\section{Studying Teams and Individuals}
 
-In some teams, pull requests are created long before the authors see the changes fit for merge. These draft PRs affect the PRCT. Teams may overlook the importance of max\_pull\_request\_age, especially when compared to max\_issue\_age. The gap between max\_issue\_age and max\_pull\_request\_age suggests that focusing on issue throughput instead of pull requests has more effect on PRCT. The answer could lie in the fact that issues are more visible to non-developers and therefore of interest to internal stakeholders such as product managers and upper management. Furthermore, in Agile daily stand-ups, it is a common convention to go through issue boards as a team. Even though studies have promoted the empowering of individual contributors and self-management, the result indicates that team productivity benefits from an external push.
+Team members' behavior was observed through three metrics. Even though only slack\_users had statistical significance for cycle times, these metrics can have other influences on team productivity. The number of weekly PR authors, which we assume correlates strongly with team size, did not have a relationship to the cycle times. Although team size and especially the changes in team composition are often considered team performance degrading factors, the results show that team size and cycle times have no connection. 
 
-\todo[inline]{minkä tyyppisissä issueissa saataisiin helpoimmat gainit (what)}
+Slack users has a weight of $-2.45$ hours per user. For a five person team, this means that if each team member enables Slack notifications, PRCT decreases by 12 hours. On the other hand, the team-wide notification Daily Digest fails to influence PRCT. Teams integrate the Daily Digest into their current communication channel or create a dedicated channel for it. As with any high-volume mediums, these channels can be flooded with content, causing the notifications to be missed or ignored by the team members. Meanwhile, the direct message continues to be an efficient way to reach individual contributors. Companies implementing DM notifications should be careful to refrain from spamming developers needlessly. Based on the results, Swarmia has created a valuable personal notification experience. 
 
-max\_pull\_request\_review\_time
+\section{Directions for Future Work}
 
-pull\_request\_linking
+In Accelerate, the authors argue that teams should be able to choose their methods and tools~\cite{forsgren_accelerate_2018}. Even though the study only handles monthly active users, it is hard to know their commitment to Swarmia: did they collectively decide to use such a tool and if they did, were the working agreements selected as a team or by a manager? Moreover, the teams' overall motivation for improvement remains to be discovered.
 
-\todo[inline]{getting back to literature}
+Currently personal notifications are measured on top-level. To gain better insight on which notifications have impact, the 
 
-\section{Personal and team motivation}
-
-In Accelerate, authors argue teams should be able to choose their methods and tools. Even though the study only handles monthly active users, it's hard to know their commitment to Swarmia: did they collectively decide to use such a tool and if they did, were the working agreements selected as a team or by a manager? Moreover, the teams' overall motivation for improvement stays unknown. 
-
-Team members' behaviour was observed through three metrics. Even though only slack\_users had statistical significance for cycle times, these metrics can have other influence on team productivity. Amount of weekly PR authors, which we assume correlates strongly with team size, did not have a relationship to the cycle times. Although team size and especially the changes in team composition are often considered to be team performance degrading factors, the results show that team size and cycle times have no connection. 
-
-Slack users, with a weight of $-0.1$ per user, implicates that personal Slack notifications do have a decreasing impact on cycle times. On the other hand, daily\_digest fails to influence cycle time. Teams can integrate the daily digest to their own communication channel or dedicate an own channel for it. As with any high-volume mediums, these channels can be flooded with content, causing the daily digest to be missed or simply ignored by the team members. Meanwhile, direct message continues to be an efficient way to reach individual contributors. Companies implementing DM notifications should although be careful to not needlessly spam the developers. Based on the results, Swarmia seems to have succeeded in creating a valuable personal notification experience. 
-
-
-\todo{think if there is point going through metrics that were not in the model. And what about those that did not have significance}
-
-swarmia\_users
-\begin{enumerate}
-    \item{removed from the model}
-    \item{same indications as with github\_authors? }
-\end{enumerate}
-
-\section{Super deep stuff about RQ2}
+\todo{add things}
 
 
-\section{Limitations}
+\section{Limitations of Work}
 
-\todo[inline]{only one category of metrics -> against SPACE principles}
-\todo[inline]{harder to get metrics, such as perceived performance, would help with finding a balance}
-\todo[inline]{only "fastness of shipping" taken into consideration, what about change failure rate etc (quality)}
-\todo[inline]{koronan ja irtisanomisten vaikutus datasettiin}
-\todo[inline]{only teams with at least 1 WA considered. What about those that have none? Why they opted out of the features}
+\subsection{Internal validity}
+
+The thesis uses cycle times as a primary metric. Even though reducing cycle times is a goal many teams try to achieve, there are also potential downsides, such as reduced code quality. Frameworks like SPACE and DORA highlight the need for multiple team productivity metrics to find an optimal balance: a single metric cannot reflect all relevant aspects. For example, the change failure rate, which Swarmia already calculates for the customer teams, would bring more depth into the analysis. 
+
+The factors used as independent variables cannot be considered to constitute all the potential factors that may influence PRCT. Factors such as team members' experience or whether teams operate remotely could affect team productivity but were not included in this study. 
+
+Furthermore, the two-year period overlaps significantly with the COVID-19 pandemic, which affected any company. Changes like layoffs, remote work, or pivots cause significant effects on team dynamics. These probable effects must be considered with the available data. On the other hand, Swarmia's client base is highly international and versatile, consisting of companies of all sizes. 
+
+As this is a quantitative study, we rely solely on data available on Swarmia business intelligence tools. Conducting user interviews or surveys would unlock many avenues currently only asserted speculatively. For example, studying perceived performance is more labor-intensive but can shed light on otherwise hard-to-measure dimensions. How people feel they are making progress is a proxy of productivity \cite{forsgren_space_2021}.
+
+\subsection{External validity}
+
+Although we set out to investigate how the Swarmia sub-feature affects team behavior, the aim is to be able to generalize the findings to any other ways of working system. Using Swarmia's Working Agreements is presumably more effective than non-technical implementations, as it actively keeps track of the agreements and nudges team members to stay on track. Therefore, the results achieved in this study are not directly derivative of other team norm systems. 
+
+Furthermore, a tool like Swarmia attracts certain companies more than others. If they are willing to invest in such a tool, they might have more motivation to improve than the companies that decide against using Swarmia or similar tools. 
+
+A positive attribute of the study is that it was conducted using historical data: the teams were unaware that their usage logs would be used as thesis material.
 
