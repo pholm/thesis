@@ -1,0 +1,28 @@
+\renewcommand{\arraystretch}{1.2}
+\begin{table}
+\begin{center}
+\begin{tabular}{|p{6cm}|p{4cm}|p{4cm}|} 
+\hline
+variable & weight & p-value \\ [0.5ex]
+\hline\hline
+
+wip\_pull\_requests & $1.55^{***}$ & $0.0000879$ \\
+max\_pull\_request\_age & $-0.235^{}$ & $0.535$ \\
+no\_direct\_pushes\_to\_main\_branch & $-1.01^{***}$ & $0.00301$ \\
+min\_issue\_contributors & $0.682^{}$ & $0.11$ \\
+wip\_issues & $0.699^{}$ & $0.0937$ \\
+max\_issue\_age & $1.07^{***}$ & $0.00597$ \\
+max\_pull\_request\_review\_time & $-1.51^{***}$ & $0.000166$ \\
+pull\_request\_linking & $-0.253^{}$ & $0.502$ \\
+slack\_users & $-0.0773^{}$ & $0.0915$ \\
+daily\_digest & $-0.595^{**}$ & $0.0481$ \\
+
+\hline\hline
+INTERCEPT & $0.570^{*}$ & $0.0355$ \\ 
+
+\hline
+\end{tabular}
+\caption{Linear regression results for IPCT, one asterisk \texttt{*} denotes  $p < 0.10$, two asterisks denotes $p < 0.05$, and three asterisks denote $p < 0.01$.}
+\label{tab:lmipResults}
+\end{center}
+\end{table}

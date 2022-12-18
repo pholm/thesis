@@ -14,13 +14,13 @@ Software engineering can be divided into four main activities: software specific
 
 The so-called Waterfall model is widely referred to as the most well-known SDLC. Waterfall model consists of 5 sequential process stages: requirements analysis, design, coding, testing, and maintenance.~\cite{alshamrani_comparison_2015} As the name implies, a project following the Waterfall model is one-way: it moves only forwards, and the different stages do not overlap. Each stage produces a deliverable to be used as a basis for the upcoming stage~\cite{balaji_waterfall_2012}. 
 
-In practice, projects rarely blindly follow the Waterfall model: upcoming stages are prepared parallel to the current one, and previous stages are revisited when the need arises.~\cite{sommerville_software_2016} This "iterative Waterfall" is actually in line with the original version from the research paper Waterfall is derived from \cite{royce_managing_nodate}.
+In practice, projects rarely blindly follow the Waterfall model: upcoming stages are prepared parallel to the current one, and previous stages are revisited when the need arises.~\cite{sommerville_software_2016} This "iterative Waterfall" is in line with the original model from the research paper Waterfall is derived from: the author originally intended the method to be used in an iterative manner~\cite{royce_managing_nodate}.
 
-A shortcoming of the Waterfall model is that the software is delivered only once. On the other hand, it is good if the requirements are well-known beforehand and stay relatively static during the project. For example, a security system for a power plant would be a potential use case for the method.
+A major shortcoming of the Waterfall model is that the software is delivered only once. On the other hand, it is good if the requirements are well-known beforehand and stay relatively static during the project. For example, a security system for a power plant would be a potential use case for the method.
 
 \subsection{Agile methods}
 
-Agile methods is an umbrella term that includes methodologies like Extreme Programming, Lean Development, and Scrum. The terminology is further complicated due to the improper usage of the term in the industry. The common properties of Agile methods include iterative development, focus on communication, and a critical stance toward intermediate deliverables like requirements. Furthermore, Agile evangelists have agreed that Agile is more about a "state of mind" rather than a single process or methodology.~\cite{cohen_introduction_2004}
+Agile methods is an umbrella term that includes methodologies like Extreme Programming~\cite{wells_don_extreme_2018}, Lean Development, and Scrum~\cite{scrumorg_home_nodate}. The terminology is further complicated due to the improper usage of the term in the industry. The common properties of Agile methods include iterative development, focus on communication, and a critical stance toward intermediate deliverables like requirements. Furthermore, Agile evangelists have agreed that Agile is more about a "state of mind" rather than a single process or methodology.~\cite{cohen_introduction_2004}
 
 In iterative development, new versions of a working product are delivered constantly: most productive teams deploy software to production even multiple times in a day~\cite{forsgren_accelerate_2018}. This approach enables the end-users to use the software from the early days of the development cycle. Development teams can receive constant feedback from users and iterate the software accordingly for the next releases.~\cite{balaji_waterfall_2012}
 
@@ -56,13 +56,13 @@ When measuring the productivity of teams or individual employees, it can be temp
 \subsection{Productivity in software engineering}
 Determining the productivity of engineers is seen as crucial for the success of software development. Therefore, substantial research has been conducted in the past years.\cite{oliveira_code_2020} No consensus has been found on measuring productivity accurately. Historically, source code-based metrics such as lines of code or amount of commits have been utilized~\cite{oliveira_code_2020}. Nowadays, these metrics are considered, at best, an incomplete representation of the true productivity~\cite{forsgren_space_2021}.
 
-Modern frameworks have explored the work of a software engineering team as a joint effort: as popular SDLCs emphasized teamwork, productivity should be assessed in the same context. The team is seen as the "basic work unit"~\cite{moe_overcoming_2010}, and the research has shifted towards how teams can improve together. Even though super-performing individuals are still seen as a valuable asset, companies should focus on building and enabling super-performing teams~\cite{forsgren_space_2021}. 
+Modern frameworks have explored the work of a software engineering team as a joint effort: as popular SDLCs emphasized teamwork, productivity should be assessed in the same context. The team is seen as the "basic work unit"~\cite{moe_overcoming_2010}, and the research has shifted towards how teams can improve together. Even though high-performing individuals are still seen as a valuable asset, companies should focus on building and enabling high-performing teams~\cite{forsgren_space_2021}. 
 
-Agile methods estimate productivity by estimating velocity – units of completed work in a time frame. Although velocity is considered a better indicator of productivity than source code metrics, it has significant drawbacks. The topic is widely covered by Forsgren et al. in their industry-shaping book \textit{Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations}. Most importantly, velocity is highly relative to the context and cannot be used as an absolute metric. Secondly, velocity is an excellent example of a metric prone to be gamed by the employees, as described previously.~\cite{forsgren_accelerate_2018}
+Agile methods estimate productivity by estimating velocity – units of completed work in a time frame. Although velocity is considered a better indicator of productivity than source code metrics, it has significant drawbacks. The topic is widely covered by Forsgren et al. in their industry-shaping book \textit{Accelerate: The Science of Lean Software and DevOps: Building and Scaling High Performing Technology Organizations}. Most importantly, velocity is highly relative to the context and should not be used as an absolute metric. Secondly, velocity is an excellent example of a metric prone to be gamed by the employees, as described previously.~\cite{forsgren_accelerate_2018}
  
 \subsection{Developer productivity frameworks}
 
-Due to many misconceptions about developer productivity, research has focused on finding reliable ways to discuss, measure, and enhance developer productivity. DevOps Research and Assessment (DORA), an Alphabet Inc subsidiary, has pioneered the research of DevOps and developer productivity. In their book Accelerate, they presented "four key metrics" to measure software delivery performance, often referred to as the DORA metrics. The metrics are as follows: 
+Partly due to the misconceptions about developer productivity, research has gravitated towards finding reliable ways to discuss, measure, and enhance developer productivity. DevOps Research and Assessment (DORA), an Alphabet Inc subsidiary, has pioneered the research of DevOps and developer productivity. In their book Accelerate, they present four key metrics to measure software delivery performance, often referred to as the DORA metrics. The metrics are as follows: 
 
 \begin{enumerate}
 \item Lead Time
@@ -71,7 +71,7 @@ Due to many misconceptions about developer productivity, research has focused on
 \item Change Fail Percentage
 \end{enumerate}
 
-Lead time is a metric derived from Lean manufacturing to the software world. Lead Time refers to the time from a feature request to the change that fulfills the request. Often in software, the changes are not directly requested by single customers but instead decided by the teams using input from stakeholders. DORA metrics define Lead Time as the time from commit to code running in production environment~\cite{forsgren_accelerate_2018}.
+Lead Time is a metric derived from Lean manufacturing to the software context. It refers to the time from a feature request to the change that fulfills the request. Often in software, the changes are not directly requested by single customers but instead decided by the teams using large amount of input from stakeholders. DORA metrics define Lead Time as the time from the first commit to code running in the production environment~\cite{forsgren_accelerate_2018}.
 
 In this thesis, we use Lead Time to refer to the time from the first commit to a new branch to the moment it is merged to the main branch, as seen in figure \ref{fig:CycleTime}. The industry term for this metric is Pull Request Cycle Time. 
 
@@ -83,7 +83,7 @@ In this thesis, we use Lead Time to refer to the time from the first commit to a
     \end{center}
 \end{figure}
 
-Originally, batch size was used as a key performance metric in the Toyota Production System. DORA researchers note that batch size is a sub-optimal metric in the software development context. Therefore, they used Deployment Frequency as a proxy to estimate the batch size. Deployment Frequency is the frequency of pushing a new version to the production environment.  
+Batch size has been popularized by it's use as a key performance metric in the Toyota Production System~\cite{ono_toyota_1988}. DORA researchers note that batch size is a sub-optimal metric in the software development context. Therefore, they chose Deployment Frequency as a suitable proxy to estimate the batch size. Deployment Frequency is the frequency of pushing a new version to the production environment.  
 
 Lead Time and Deployment Frequency are metrics for software delivery tempo. Two additional metrics are used to determine if the increase in tempo has disadvantages in terms of software quality or system stability: Mean Time to Restore and Change Fail Percentage. Both of these measure situations where the production environment has failed. The authors articulate that failure is a common situation in rapidly changing software systems, and the absolute amount of failures is an obsolete metric. Instead, they propose two better suitable metrics: the time used to restore an application after an incident and the percentage of changes that lead to a production system failure. 
 
@@ -99,17 +99,17 @@ The SPACE publication proposes a set of example metrics to concretize the framew
 
 Work is often organized around teams. To distinguish a team from other groups that work together, we use the definition by Katzenbach \& Smith: "a team is a small number of people with complementary skills who are committed to a common purpose, set of performance goals, and approach for which they hold themselves accountable"~\cite{katzenbach_discipline_1993}. The fundamental difference is the accountability on both individual and team levels: team members are primarily responsible for each other, their supervisors, or other stakeholders~\cite{katzenbach_discipline_1993}.
 
-In software engineering, teams work together to design, develop and maintain products. Working as a team offers upsides such as increased employee satisfaction, innovation, and productivity~\cite{moe_teamwork_2010}. The team is considered the "basic work unit" rather than the individual~\cite{moe_overcoming_2010}. The shift has motivated companies and executives to focus on building hyper-performing teams.
+In software engineering, teams work together to design, develop and maintain products. Working as a team offers upsides such as increased employee satisfaction, innovation, and productivity~\cite{moe_teamwork_2010}. In modern software development, the team is considered as the basic work unit rather than the individual contributor~\cite{moe_overcoming_2010}. This shift has motivated companies and executives to focus on building hyper-performing teams.
 
 \subsection{Self-managing teams}
 
-Modern software development methods encourage, or even require, self-managing teams~\cite{moe_teamwork_2010}. Other terms used to define the phenomena include self-organizing team, autonomous team, and empowered team. Even though most studies report that forming self-managing teams leads to positive outcomes, there have also been opposing conclusions. Factors like poor leadership or the broader nature of the situation can lead to the difficulty of implementing such a team~\cite{moe_teamwork_2010}. 
+Modern software development methods encourage, or even insist on, the use of self-mana\-ging teams~\cite{moe_teamwork_2010}. Other terms used to define the phenomena include self-organizing team, autonomous team, and empowered team. Even though most studies report that forming self-managing teams leads to positive outcomes, there have also been opposing conclusions. Factors like poor leadership or the broader nature of the situation can lead to the difficulty of implementing such a team~\cite{moe_teamwork_2010}. 
 
 To enable genuine self-management within a team, company leadership and other internal stakeholders must respect the team's independence and improvement efforts~\cite{moe_overcoming_2010}. Additionally, teams are not usually designated with a leader: instead, they are expected to form processes for a shared leadership function. Even though shared leadership can lead to better functioning teams, it adds more complexity and requires better cohesion and communication.~\cite{solansky_leadership_2008}
 
 To improve, self-managing teams have to change their behavior, either by self-managing or from an external stimulus. Teams that can self-improve can achieve more autonomy than their counterparts. Norms, standards that regulate team members' behavior, are of the essence when building a productive software development team~\cite{abrahamsson_exploring_2016}. Norms can include technical and non-technical rules; for example, teams can commit to test-driven development or promote pair programming. The impact of norms for development teams is achieved through increased simplicity of standard processes: team members can trust that their colleagues do certain activities and refrain from the unwanted ones~\cite{abrahamsson_exploring_2016}. 
 
-Team norms can be formed in two ways: organically within the team or by others, or as part of the organization's guidelines or direct influence~\cite{teh_social_2012}. Agile teams tune their ways of working during sprint retrospective meetings. Teams can also host dedicated sessions to discuss their norms: many SDLCs encourage teams to review their methods regularly. To enforce the norms, teams use whiteboards, notifications, or other reminders to refresh their memory and keep each other accountable.  
+Team norms can be formed in two ways: organically within the team or by others, or as part of the organization's guidelines or direct influence~\cite{teh_social_2012}. Agile teams tune their ways of working during sprint retrospective meetings. Teams can also host dedicated sessions to discuss their norms: many SDLCs encourage teams to review their methods regularly. To enforce the norms, teams use whiteboards, notifications, and other reminders to refresh their memory and keep each other accountable.  
 
 \subsection{Tools for teamwork}
 
@@ -121,9 +121,9 @@ In addition to systems designed to help teams work together, a new wave of solut
 
 \section{Managing change}
 
-\subsection{Change in software context}
+\subsection{Change in the software context}
 
-Software development best practices are constantly changing, requiring engineers to stay adaptive throughout their careers. As people move between organizations, they bring new ways of working. This creates pressure for teams to be able to digest new methods and push new employees to align with the current ones. 
+Software development best practices are constantly changing, requiring engineers to stay adaptive throughout their careers. As people move between organizations, they bring in new ways of working. This creates pressure for teams to be able to digest new methods and push new employees to align with the current ones. 
 
 Furthermore, software development is an industry with constantly changing requirements. This is why methodologies like Agile have become so popular: they help organizations cope with the overwhelming amount of instability. 
 
@@ -138,6 +138,15 @@ The stronger individuals identify to their team, the stronger the effect is \cit
 \subsection{Individuals and change}
 
 The role of the individual contributors is significant in organizational change. In software development, the success of change can be concentrated into three significant factors: the engineers' knowledge of the change outcomes, their view on the need for change, and their contribution to the change process. \cite{lenberg_initial_2017}
+
+\todo{Knowledge of the change outcomes}
+To spread knowledge on the upcoming change, the companies should 
+
+\todo{View on the need for change}
+To initiate the need of change within individuals, it is necessary to create a sense of urgency~\cite{lenberg_initial_2017}. 
+
+\todo{Contribution to the process}
+
 
 
 

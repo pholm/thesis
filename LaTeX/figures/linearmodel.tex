@@ -1,5 +1,5 @@
 \renewcommand{\arraystretch}{1.2}
-\begin{table}[h]
+\begin{table}
 \begin{center}
 \begin{tabular}{|p{6cm}|p{4cm}|p{4cm}|} 
 \hline
@@ -12,26 +12,17 @@ no\_direct\_pushes\_to\_main\_branch & $-1.28^{***}$ & $0.000166$ \\
 min\_issue\_contributors & $0.599$ & $0.128$ \\
 wip\_issues & $0.544$ & $0.17$ \\
 max\_issue\_age & $-0.385$ & $0.299$ \\
-max\_pull\_request\_review\_time & $-0.812^{*}$ & $0.0238$ \\
+max\_pull\_request\_review\_time & $-0.812^{**}$ & $0.0238$ \\
 pull\_request\_linking & $0.451$ & $0.197$ \\
-slack\_users & $-0.102^{**}$ & $0.00208$ \\
+slack\_users & $-0.102^{***}$ & $0.00208$ \\
 daily\_digest & $0.349$ & $0.224$ \\
+
+\hline\hline
+INTERCEPT & $1.38^{***}$ & $4.84*10^{-6}$ \\ 
 
 \hline
 \end{tabular}
-\caption{Linear regression results, one asterisk \texttt{*} denotes  $p < 0.10$, two asterisks denotes $p < 0.05$, and three asterisks denote $p < 0.01$.}
+\caption{Linear regression results for PRCT, one asterisk \texttt{*} denotes  $p < 0.10$, two asterisks denotes $p < 0.05$, and three asterisks denote $p < 0.01$.}
 \label{tab:lmResults}
 \end{center}
 \end{table}
-
-
-% wip\_pull\_requests & $1.28^{***} \newline (p=0.000402)$ \\
-% max\_pull\_request\_age & $-0.368^{} \newline (p=0.318)$ \\
-% no\_direct\_pushes\_to\_main\_branch & $-1.28^{***} \newline (p=0.000166)$ \\
-% min\_issue\_contributors & $0.599^{} \newline (p=0.128)$ \\
-% wip\_issues & $0.544^{} \newline (p=0.17)$ \\
-% max\_issue\_age & $-0.385^{} \newline (p=0.299)$ \\
-% max\_pull\_request\_review\_time & $-0.812^{*} \newline (p=0.0238)$ \\
-% pull\_request\_linking & $0.451^{} \newline (p=0.197)$ \\
-% slack\_users & $-0.102^{**} \newline (p=0.00208)$ \\
-% daily\_digest & $0.349^{} \newline (p=0.224)$ \\

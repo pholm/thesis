@@ -1,17 +1,16 @@
-
 \chapter{Methodology}
 
 \section{Research context}
 
-Swarmia is a Software as a Service tool for software development teams. Teams utilize Swarmia to measure their performance and find potential places of improvement in their development pipeline. Swarmia is designed to help teams work in a self-managed manner.
+Swarmia is a Software as a Service tool for software development teams. Teams utilize Swarmia to measure their performance and find potential improvement places in their development pipeline. Swarmia is designed to help teams work in a self-managed manner.
 
 To provide insight to the client teams, Swarmia integrates with issue trackers like Jira and version control systems like GitHub. The teams are then provided with insights accessible to all team members through the Swarmia web application. In addition, Swarmia can be configured to push updates to the team's Slack channel. A team of any size can use Swarmia: the teams include both working within software companies and in-house development teams of non-software companies. 
 
-One of the features in Swarmia is called Working Agreements. Teams can configure up to eight agreements, generally described as team norms or collaboration guidelines. The agreements are selected from a predefined list of options: each team can customize them to suit their use case. For example, a team could agree that they want to enforce linking pull requests to issues. Swarmia would then track the set condition automatically and inform the teams about the status of the agreement. 
-
-Working agreement options in Swarmia are presented in Figure \ref{fig:WorkingAgreements}.
+One of the features in Swarmia is called Working Agreements. Teams can configure up to eight agreements, generally described as team norms or collaboration guidelines. The agreements are selected from a predefined list of templates: each team can customize them to suit their use case. For example, a team could agree that they want to enforce linking pull requests to issues. Swarmia would then track the set condition automatically and inform the teams about the status of the agreement. 
 
 \input{LaTeX/figures/agreements.tex}
+
+Working Agreement options in Swarmia are presented in Table \ref{fig:WorkingAgreements}, along with their codes and computer-readable names. The codes are used in graphs and tables, whereas the computer-readable names are used while referring to WAs in text.
 
 \begin{figure}[h]
     \begin{center}
@@ -31,48 +30,65 @@ Processing of the data is done in Google's BigQuery data warehouse service. Most
 
 \input{LaTeX/figures/dataexamples.tex}
 
-For this study, weekly aggregates of team metrics were exported from the Swarmia backend to BigQuery. This data set is called "team pr cycle times" in Figure \ref{fig:dataFlow}. These metrics were joined with basic team information, working agreement usage, and team member activity. Finally, team identifiers and timestamps were removed so the data points would be independent. A resulting data sample is displayed in Table \ref{tab:dataExample}.
+For this study, weekly aggregates of team metrics were exported from the Swarmia backend to BigQuery. This data set is called "cycle times" in Figure \ref{fig:dataFlow}. These metrics were merged with basic team information, working agreement usage, and team member activity. Finally, team identifiers and timestamps were removed so the data points would be independent. A resulting data sample is displayed in Table \ref{tab:dataExample}.
 
 \section{Research questions}
 
 The main research question of this thesis is to look into how teams use Working Agreements: which share of Swarmia teams use the feature and how these teams have configured their Working Agreements setup. 
 
-The second research question is to determine if Working Agreements can enhance productivity in software development teams. The hypothesis based on previous research is that as Working Agreements promote methods that accelerate software development, they should directly impact the team's productivity. We will look into the Working Agreement composition in different teams and find out which agreements impact the teams' performance most. 
+The second research question is to determine if Working Agreements can enhance productivity in software development teams. The hypothesis based on previous research is that as Working Agreements promote methods that accelerate software development, they should directly impact the team's productivity. We will look into the Working Agreement composition in different teams and determine which agreements impact the teams' performance most. 
 
 \section{Approach}
 
-To answer RQ1, data from Swarmia is used to determine how many of the teams have enabled which Working Agreements. Furthermore, we look into how many Working Agreements teams usually have in use and what parameters they have configured in Swarmia: for example, what is their WIP limit in \textit{Limit issues in progress} agreement? Lastly, team characteristics such as team size and their connection to the Working Agreements setup are analyzed. The RQ1 is approached with simple SQL queries. 
+To answer RQ1, data from Swarmia is used to determine how many of the teams have enabled which Working Agreements. Furthermore, we look into how many Working Agreements teams usually use and what goals they have configured for the WAs. For example, WIP limit agreements require teams to specify a threshold for open items. Lastly, team characteristics, such as team size, and their connection to the Working Agreements setup, are analyzed.
 
-To answer RQ2, data from all teams using the Working Agreements feature is collected and analyzed. Historical activity data is pulled from the teams' source control repositories. The data is aggregated weekly for 24 months: some teams have been clients for longer than two years, and some for a shorter amount. This should be fine, as averages are used, and the data collection period is not a variable in the analysis.
+Data from all teams using the Working Agreements feature is collected and analyzed to help answer RQ2. Historical activity data is pulled from the teams' source control repositories. The data is aggregated weekly for 24 months: some teams have been clients for longer than two years, and some for a shorter amount. The variability of the data collection period should be acceptable, as averages are used, and the period length is not a variable in the analysis.
 
-The key metric used in the analysis is the Pull Request Cycle Time (PRCT). Even though Swarmia exports data from issue trackers, these data sources were left out of the analysis based on the scope of the thesis. The analysis is done in BigQuery in line with Swarmia's privacy policy. In addition to a standard SQL query engine, BigQuery offers machine learning capabilities. For this thesis, the inbuilt linear regression feature was utilized. Figure \ref{fig:dataFlow} presents the data flow before building the regression model. 
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=13.5cm]{LaTeX/images/cts_defined_arrows.png}
+        \caption{Cycle time definitions}
+        \label{fig:ctsArrows}
+    \end{center}
+\end{figure}
 
-In linear regression, we look at the relationship between the independent and dependent variables. The dependent variable is the one that, as a hypothesis, depends on the values of the independent variables. Respectively, the independent variables are the configuration of working agreements, team member metrics, and Slack notification settings. 
+The key metric used in the analysis is the Pull Request Cycle Time (PRCT). Additionally, we look into the sub-parts of PRCT: In Progress Cycle Time (IPCT), In Review Cycle Time (IRCT), and Ready to Merge Cycle Time (RMCT). The span of these metrics to each other is shown in Figure \ref{fig:ctsArrows}. 
+
+Even though Swarmia exports data from issue trackers, these data sources were left out of the analysis based on the scope of the thesis. The analysis is done in BigQuery in line with Swarmia's privacy policy. In addition to a standard SQL query engine, BigQuery offers machine learning capabilities. For this thesis, the inbuilt linear regression feature was utilized. Figure \ref{fig:dataFlow} presents the data flow before building the regression model. 
+
+We look at the relationship between the independent and dependent variables in linear regression. The dependent variable is the one that, as a hypothesis, depends on the values of the independent variables. Respectively, the independent variables are the configuration of working agreements, team member metrics, and Slack notification settings. 
 
 \input{LaTeX/figures/correlationmatrix.tex}
 
 Pearson correlation coefficient for independent variables is calculated in Table \ref{tab:correlationMatrix} to ensure the data is compatible with linear regression analysis: two variables should not correlate for the model to work as expected. The most considerable correlation encountered is the of slack\_users and swarmia\_users with a value of 0.84. The pairs with high correlation deal with the same themes, for example, WAs related to pull requests. Even though some of the WAs correlate, the data can be used for the model with slight modifications: github\_authors and swarmia\_users were dropped to include only the team member metric, slack\_users. 
 
-Linear regression can be formulated as follows:
+\begin{samepage}
 
+Linear regression can be formulated as follows:
 \begin{equation}
 Y = \beta_0 + \beta_i X_i + \beta_{i+1} X_{i+1} + \ldots + \beta_n X_n + \epsilon
 \end{equation}
-
 
 where
 \begin{description}
 \item[$Y$] is dependent variable
 \item[$\beta_0$] is constant coefficient (intercept)
 \item[$\beta_i$] is slope for $X_i$
-\item[$X_i$] is independent variable
+\itenm[$X_i$] is independent variable
 \item[$\epsilon$] is error
 \end{description}
+
+\end{samepage}
 
 The training data is passed to linear regression in a form presented in Table \ref{tab:trainingDataStructure}. The data has gone through two significant modifications to suit linear regression. First, we calculated an average PRCT for each team before they enabled any working agreements. This average is then subtracted from each row PRCT to achieve a normalized data set: the aim is to diminish the differences between teams to achieve comparable PRCTs. Secondly, WA activation dates are mapped to Boolean values for each row: the value is zero if WA has not been activated yet and one if it has.
 
 \input{LaTeX/figures/structure.tex}
 
-At first, there were three team member-related metrics: github\_authors, swarmia\_users, and slack\_users. Swarmia\_users did not have statistical significance and correlated pretty strongly with github\_users. In the end, out of the three metrics, only slack\_users was retained for the final model.
+At the beginning of the analysis, three team member-related metrics were included: github\_authors, swarmia\_users, and slack\_users. The amount of Swarmia users did not have statistical significance and correlated pretty strongly with github\_authors. In the end, out of the three metrics, only slack\_users was retained in the final model.
 
-The model was also run with PRCT components: time in progress, in review, and ready to merge. The aim was to investigate which part of the process the independent variables mainly influenced. Only modeling against in-progress cycle time (IPCT) produced results with statistical significance.  
+The model was also run with PRCT components: IPCT, IRCT, and RMCT. The aim was to investigate which part of the process the independent variables mainly influenced. Only modeling against In Progress Cycle Time produced results with statistical significance. 
+
+The threshold value $\alpha$ selected for the study diverts from the standard convention of $\alpha=0.05$. Instead, results with a p-value of $p<0.10$ are considered as having statistical significance against the null hypothesis. Furthermore, results with a p-value of $p<0.05$ and $p<0.01$ were given additional noteworthiness. These three categories of significance are denoted with asterisks in figures and tables. 
+
+In the study, the conclusions are not solely based on p-value: it is instead utilized as a variable that supports the broader analysis. Especially weights of the independent variables are considered crucial when interpreting the results. 
+
