@@ -4,9 +4,10 @@
 \definecolor{cor-strong}{HTML}{F47461}
 \definecolor{cor-very-strong}{HTML}{8B0000}
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
-\begin{tabular}{ccccccccccccc}
+\resizebox{\columnwidth}{!}{
+\begin{tabular}{c c c c c c c c c c c c c}
 
 & A & B & C & D & E & F & G & H & ga & sw & sl & dd\\ \hline
 A & \textcolor{cor-very-strong}{1.0} & \textcolor{cor-moderate}{0.49} & \textcolor{cor-weak}{0.28} & \textcolor{cor-very-weak}{0.16} & \textcolor{cor-weak}{0.29} & \textcolor{cor-very-weak}{0.15} & \textcolor{cor-moderate}{0.42} & \textcolor{cor-weak}{0.24} & \textcolor{cor-very-weak}{-0.09} & \textcolor{cor-very-weak}{-0.04} & \textcolor{cor-very-weak}{-0.03} & \textcolor{cor-weak}{0.2}\\ \hline
@@ -23,6 +24,8 @@ sl &  &  &  &  &  &  &  &  &  &  & \textcolor{cor-very-strong}{1.0} & \textcolor
 dd &  &  &  &  &  &  &  &  &  &  &  & \textcolor{cor-very-strong}{1.0}\\ \hline
 
 \end{tabular}
+}
+
 \caption{Correlation matrix. The stronger the correlation, the darker the color. ga=github\_authors, sw=swarmia\_users, sl=slack\_users, dd=daily\_digest}
 \label{tab:correlationMatrix}
 \end{table}

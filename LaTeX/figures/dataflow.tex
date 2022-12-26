@@ -1,6 +1,8 @@
-\begin{figure}[h]
+\begin{figure}[ht]
 \centering
-\begin{tikzpicture}[]
+\begin{tikzpicture}[
+    every node/.style={align=center, minimum height=1em, minimum width=1cm,node distance=0.7cm},
+]
 
 %Nodes
 \node[entity]      (teamswa)        {active teams with WA adoption};
@@ -10,7 +12,7 @@
 \node[entity]      (ctwa)       [below=of teamswa] {cycle times with WA adoption};
 \node[entity]      (cycletimes)       [left=of ctwa]     {cycle times};
 \node[entity]      (adoption)       [left=of snapshots] {WA adoption};
-\node[entity]       (lm)        [below=of ctwa] {linear model input data};
+\node[entity, fill=gray!20]       (lm)        [below=of ctwa] {linear model input data};
 
 %Lines
 \draw[->] (cycletimes.east) -- (ctwa.west);

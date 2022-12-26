@@ -1,6 +1,6 @@
 % another way of presenting linear model results, maybe better than the table. How to show p value here?å
 %  metrics 9-11 are not boolean (amount of people), so they should be presented in other way.
-\begin{filecontents}{linearmodel_ip.data}
+\begin{filecontents}{linearmodel-ip.data}
 type    amount      p
 1    1.55262826067878    ***
 2    -0.234697922043722    \nan
@@ -39,9 +39,8 @@ type    amount      p
         every node near coord/.append style={anchor=west},
         point meta=explicit symbolic,
         enlarge y limits=0.2,
-	ybar interval=0.8
-]
-\addplot[fill=cyan] table[x=type, y=amount, meta=p] {linearmodel_ip.data};
+	ybar interval=0.8]
+\addplot[fill=cyan]table[x=type, y=amount, meta=p]{linearmodel-ip.data};
 \end{axis}
 \end{tikzpicture}
 \caption{Linear regression results for IPCT}
