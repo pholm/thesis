@@ -1,28 +1,26 @@
 \chapter{Introduction}
 
-Technology companies are looking for ways to get the most out of their software development teams in the highly competitive market. Previously, the focus has been on the performance of individual developers with the help of artificial metrics, such as lines of code. 
+Technology companies are looking for ways to get the most out of their software development teams in the highly competitive market. Previously, the focus has been on the performance of individual contributors with the help of artificial metrics, such as lines of code~\cite{rosenberg_misconceptions_1997}.
 
-A new wave of productivity tools has emerged to answer this need. Many of these products claim to be based on peer-reviewed research. The tools are openly opinionated and aim to influence their client companies to use specific popular development methodologies, such as Continuous Integration. Companies building solutions in the field include LinearB~\cite{linearb_developer_2022}, Haystack~\cite{haystack_haystack_2022}, Jellyfish~\cite{jellyfish_align_2022}, and Swarmia~\cite{swarmia_gain_2022}, among others.
+A new wave of tools has emerged to answer the need for team-level productivity insights. These products are openly opinionated and aim to influence their client companies to use specific popular development methodologies, such as Continuous Integration. Companies building solutions in the field include LinearB~\cite{linearb_developer_2022}, Haystack~\cite{haystack_haystack_2022}, Jellyfish~\cite{jellyfish_align_2022}, and Swarmia~\cite{swarmia_gain_2022}, among others.
 
 Swarmia is a Finnish startup company that has developed its namesake developer productivity tool since 2019. The product vision is based on the idea that development teams use the tool for self-improvement. The application integrates with version control and project planning systems to provide data-based insights to the teams. 
 
-Working Agreements is a key feature of Swarmia. With Working Agreements, teams configure rules into the application. Then, the application starts tracking them and informing the team members of their progress. For instance, a team can set limits to open issues or pull requests. The available set of Working Agreement templates is based on standard software development practices. 
+Working Agreements (WAs) is a key feature of Swarmia. With Working Agreements, teams configure ways of working into the application. Then, the application starts tracking them and informing the team members of their progress. For instance, a team can set limits to open issues or pull requests. The Working Agreement templates are mainly based on the concept of flow, first introduced in Toyota Production System~\cite{ono_toyota_1988} and later adopted in modern management frameworks (e.g.~\cite{krafcik_triumph_1988,cohen_introduction_2004}).
 
-\section{Problem statement}
+\section{Scope and Problem Statement}
 
-As a null hypothesis, we assume that using Working Agreements do not influence team productivity. This hypothesis is then challenged using two research questions: 
+In this thesis, we explore whether Working Agreements influence teams' pull request (PR) activity. For the purpose of this thesis, the terms productivity and performance are mainly used to refer to  teams' PR metrics.
+
+The study is a quantitative research based on Swarmia client teams' data. For the study, data from a sample of teams in Swarmia's platform was collected for analysis. The data included codebase statistics, such as commit frequency and batch size. Additionally, Swarmia internal data on how teams configure Swarmia was used.
+
+As a null hypothesis, we assume that using Working Agreements does not influence team productivity. This hypothesis is then challenged using two research questions: 
 
 \begin{enumerate}
     \item[{\bf RQ1}] How do teams use Working Agreements?
     \item[{\bf RQ2}] What is the effect of Working Agreements on software development cycle times?
 \end{enumerate}
 
-For RQ1, we examine the usage data of Swarmia teams. The aim is to determine how popular the Working Agreements feature is and how the teams have configured it. 
+For RQ1, we examine the usage data of Swarmia teams. The aim is to determine how popular the Working Agreements feature is and how the teams have configured it. The first research question is investigated with SQL aggregate queries. 
 
-We look into RQ2 from two aspects: Do Working Agreements overall influence teams' software development cycle times and if they do, are some configurations of working agreements more influential than others? 
-
-\section{Scope and Methodology}
-
-The thesis focuses on modern software development teams' efforts to increase productivity. The participating teams are selected from Swarmia's customer base to have access to their data. This further narrows the teams to those that use GitHub for version control and either Jira or Linear for project management, as these are the platforms that Swarmia currently provides integration. 
-
-The study's methodology is quantitative research based on Swarmia business data, including codebase statistics for the client teams. The first research question is investigated with SQL aggregate queries. For the second research question, an multiple linear regression model is utilized to look into the Working Agreement configuration's relationship on the teams' performance, more specifically the software development cycle times. 
+We look into RQ2 from two aspects: Do Working Agreements overall influence teams' software development cycle times and if they do, are some configurations of working agreements more influential than others. For the second research question, an multiple linear regression model is utilized to look into the Working Agreement configuration's relationship with the teams' performance, specifically, the software development cycle times.

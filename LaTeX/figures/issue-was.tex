@@ -1,44 +1,46 @@
 \begin{filecontents}{wip_issues.data}
 was teams
-1   120
-2   30
-3   6
-4   5
-5   5
+1 74.5341614906832
+2 18.6335403726708
+3 3.72670807453416
+4 3.1055900621118
+5 1
 \end{filecontents}
 
 \begin{filecontents}{issue_ct.data}
 was teams
-1   150
-2   21
-3   3
-4   2
-5   5
+1 85.2272727272727
+2 11.9318181818182
+3 1.70454545454545
+4 1.13636363636364
+5 1
 \end{filecontents}
 
 \begin{filecontents}{min_contribs.data}
 was teams
-1   115
-2   12
-3   1
-4   1
-5   5
+1 89.1472868217054
+2 9.30232558139535
+3 0.775193798449613
+4 0.775193798449613
+5 1
 \end{filecontents}
 
 \begin{figure}[ht]
-\begin{subfigure}{.25\textwidth}
+\begin{subfigure}[b]{.45\textwidth}
     \centering
     \begin{tikzpicture}
     \begin{axis}[
     	x tick label style={
     		/pgf/number format/1000 sep=},
-    	ylabel=Number of teams,
+    	ylabel=Share of teams,
             xlabel=Amount of options,
-    	enlargelimits=0.05,
     	legend style={at={(0.5,-0.1)},
     	anchor=north,legend columns=-1},
     	ybar interval=0.8,
-            width=\linewidth,
+            yticklabel={\pgfmathprintnumber\tick\%},
+            ymin=0,
+            ymax=100,
+            width=0.95\textwidth
     ]
     \addplot[fill=cyan] table[x=was, y=teams] {wip_issues.data};
     \end{axis}
@@ -46,44 +48,48 @@ was teams
     \caption{wip\_issues}
 \end{subfigure}
 \hfill
-\begin{subfigure}{.25\textwidth}
+\begin{subfigure}[b]{.45\textwidth}
     \centering
     \begin{tikzpicture}
     \begin{axis}[
     	x tick label style={
     		/pgf/number format/1000 sep=},
-    	ylabel=Number of teams,
+    	ylabel=Share of teams,
             xlabel=Amount of options,
-    	enlargelimits=0.05,
     	legend style={at={(0.5,-0.1)},
     	anchor=north,legend columns=-1},
     	ybar interval=0.8,
-            width=\linewidth,
+            ymin=0,
+            ymax=100,
+            yticklabel={\pgfmathprintnumber\tick\%},
+            width=0.95\textwidth
     ]
     \addplot[fill=cyan] table[x=was, y=teams] {issue_ct.data};
     \end{axis}
     \end{tikzpicture}
     \caption{max\_issue\_age}
 \end{subfigure}
-\hfill
-\begin{subfigure}{.25\textwidth}
+
+\begin{subfigure}[b]{.45\textwidth}
     \centering
     \begin{tikzpicture}
     \begin{axis}[
     	x tick label style={
     		/pgf/number format/1000 sep=},
-    	ylabel=Number of teams,
+    	ylabel=Share of teams,
             xlabel=Amount of options,
-    	enlargelimits=0.05,
     	legend style={at={(0.5,-0.1)},
     	anchor=north,legend columns=-1},
     	ybar interval=0.8,
-            width=\linewidth,
+            ymin=0,
+            ymax=100,
+            yticklabel={\pgfmathprintnumber\tick\%},
+            width=0.95\textwidth
     ]
     \addplot[fill=cyan] table[x=was, y=teams] {min_contribs.data};
     \end{axis}
     \end{tikzpicture}
-    \caption{min\_issue\_contr}
+    \caption{min\_issue\_contributors}
 \end{subfigure}
 \caption{Issue related WA usage}
 \label{fig:issue_was}

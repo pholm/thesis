@@ -1,14 +1,14 @@
 \begin{filecontents}{usage.data}
 type amount name
-1 219 wip pull
-2 315 max pr
-3 229 no dir
-4 148 min issue
-5 204 wip iss
-6 225 max issue
-7 341 max pr 
-8 206 pr linking
-9 111 empty
+1 51.6605166051661 wip pull
+2 68.2656826568266 max pr age
+3 47.7244772447724 no dir
+4 31.2423124231242 min issue
+5 42.1894218942189 wip iss
+6 44.4034440344403 max issue
+7 71.709717097171 max review age
+8 43.6654366543665 pr linking
+9 1 empty
 \end{filecontents}
 
 \begin{figure}[ht]
@@ -17,7 +17,7 @@ type amount name
 \begin{axis}[
 	x tick label style={
 		 rotate=45, anchor=east},
-	ylabel=Number of teams using,
+	ylabel=Share of teams using,
         xticklabels={\texttt{\detokenize{wip_pull_requests}},
                     \texttt{\detokenize{max_pull_request_age}},
                     \texttt{\detokenize{no_direct_pushes_to_main_branch}},
@@ -30,11 +30,23 @@ type amount name
 	legend style={at={(0.5,-0.1)},
 	anchor=north,legend columns=-1},
 	ybar interval=0.8,
+        yticklabel={\pgfmathparse{\tick}\pgfmathprintnumber{\pgfmathresult}\%},
         ymin=0
 ]
 \addplot[fill=cyan] table[x=type, y=amount] {usage.data};
 \end{axis}
 \end{tikzpicture}
-\caption{Working Agreement usage}
+\caption{Working Agreement usage. Teams can configure multiple WAs.}
 \label{fig:waPopularity}
 \end{figure}
+
+
+% original numbers
+% 219	wip pull
+% 315	max pr age
+% 229	no dir
+% 148	min issue
+% 204	wip iss
+% 225	max issue
+% 341	max pr review
+% 206	pr linking

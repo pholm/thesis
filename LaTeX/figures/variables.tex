@@ -1,8 +1,8 @@
 \begin{table}
 \begin{center}
-\begin{tabularx}{\textwidth}{ |l|X| } 
+\begin{tabularx}{\textwidth}{|l|l|} 
 \hline
-parameter & description \\ [0.5ex] 
+parameter & description\\ [0.5ex] 
 \hline\hline
 wip\_pull\_requests & WA status \\
 max\_pull\_request\_age & WA status \\
@@ -12,15 +12,19 @@ wip\_issues & WA status \\
 max\_issue\_age  & WA status \\
 max\_pull\_request\_review\_time  & WA status \\
 pull\_request\_linking  & WA status \\
-ct\_days  & normalized cycle time in days \\
 github\_authors & Pull request authors \\
 swarmia\_users & MAU in Swarmia team \\
 slack\_users & Swarmia users with Slack notifications \\
 daily\_digest & team's Slack daily digest status \\
+target\_days & numeric target for a given WA \\
+days\_in\_use & days since WA configuration \\
+target\_achieved & whether target was achieved \\
+ct\_days  & normalized cycle time in days \\
+
 \hline
 \end{tabularx}
-\caption{Linear regression training data structure}
-\label{tab:trainingDataStructure}
+\caption{Variables used in the study}
+\label{tab:variables}
 \end{center}
 \end{table}
 

@@ -1,10 +1,10 @@
 \chapter{Results}
 
-\section{How teams use Working Agreements}
+\section{Use of Working Agreements}
 
 \subsection{Selecting Working Agreements}
 
-To get an overview of how teams are using Working Agreements, we set out with the proportional popularity of WAs. As shown in Figure \ref{fig:waPopularity}, the agreements max\_pull\_request\_review\_time and max\_pull\_request\_age are used the most: by 315 and 341 teams, respectively. Another atypical WA is min\_issue\_contributors, with approximately 150 teams. The remaining Working Agreements are evenly popular: wip\_pull\_requests 219 teams; wip\_issues 204 teams; no\_direct\_pushes\_to\_main\_branch 229 teams; pull\_request\_linking 206 teams; and max\_issue\_age 225 teams.
+To get an overview of how teams are using Working Agreements, we set out with the proportional popularity of WAs. As shown in Figure \ref{fig:waPopularity}, the agreements max\_pull\_request\_review\_time and max\_pull\_request\_age are used the most: by 341 and 315 teams, respectively. Another atypical WA is min\_issue\_contributors, with approximately 150 teams. The remaining Working Agreements are evenly popular: wip\_pull\_requests 219 teams; wip\_issues 204 teams; no\_direct\_pushes\_to\_main\_branch 229 teams; pull\_request\_linking 206 teams; and max\_issue\_age 225 teams.
 
 \input{LaTeX/figures/wa-usage.tex}
 
@@ -16,32 +16,31 @@ Even though eight Working Agreement templates exist, the number of WAs in use ca
 
 \subsection{Issues and Working Agreements}
 
-Finally, the usage of issue-related Working Agreements was analyzed. Figure \ref{fig:issue_was} shows that for all three templates, it is pretty rare for a team to configure more than one Working Agreement. In wip\_issues, 120 teams configured it once, 30 teams twice, six teams three times, and five teams four times. For max\_issue\_age, the results are 150, 21, 3, and 2 teams; for min\_issue\_contributors, 115, 12, 1, and 1 teams.   
-The distribution of issue types in these three Working Agreements is shown in Table \ref{tab:issueConfig}. Story is the most popular issue type, with 359 configured Working Agreements. A notable difference is min\_issue\_contributors, where Epic is often configured in $54\%$ of the cases. This result implies that teams want to ensure co-creation on top-level issues, while age and the number of issues are more relevant for the smaller entities. 
+The usage of issue-related Working Agreements was analyzed. Figure \ref{fig:issue_was} shows that for all three templates, it is rare for a team to configure more than one Working Agreement. In wip\_issues, 120 teams configured it once, 30 teams twice, six teams three times, and five teams four times. For max\_issue\_age, the results are 150, 21, 3, and 2 teams; for min\_issue\_contri\-butors, 115, 12, 1, and 1 teams.
 
 \input{LaTeX/figures/issueconfig.tex}
+
+The distribution of issue types in these three Working Agreements is shown in Table \ref{tab:issueConfig}. Story is the most popular issue type, with 359 configured Working Agreements. A notable difference is min\_issue\_contributors, where Epic is often configured in $54\%$ cases. This result implies that teams want to ensure co-creation on top-level issues, while age and the number of issues are more relevant for the smaller entities. 
 
 On the other hand, Bug-related WAs are the least configured overall, with only 36 WAs, a stark contrast to Story. For max\_issue\_age, Bug is the second-most-popular issue type, even though Story also dominates in this category. Teams aim to reduce the number of long-term bugs in their systems using this Working Agreement. 
 
 \input{LaTeX/figures/issue-was.tex}
 
-\section{Working Agreement setup effect on cycle times}
+\section{Working Agreement Setup Effect on Cycle Times}
 
-The primary method used to answer RQ2 is the multiple linear regression model. The aim was to determine how Working Agreement configurations and other independent factors, such as team size, affect PRCT. The results are presented in Table \ref{tab:lmResults}. The values in the weight column represent the influence of the variable in days: negative values, therefore, imply a decrease in PRCT, while positive values imply an increase. Additionally, the same information is visualized in Figure \ref{fig:lmResultsChart}, with the asterisks indicating the p-value of the perceived result. When interpreting the results, one should pay attention to the intercepts of each model, as they provide the baseline to which the weights should be compared to. 
-
-To summarize, regarding pull request -related WAs, we observed that wip\_pull\_requests has a strong prolonging effect on PRCT $(w=1.28,p<0.01)$. On the other hand, max\_pull\_request\_review\_time demonstrates a moderate decreasing impact on PRCT with $(w=-0.812,p<0.05)$. Although we do not observe a statistical significance in the following variables, the results are as follows: max\_pull\_request\_age $(w=-0.368,p>0.10)$ and pull\_request\_linking, a unique WA with a connection to both pull requests and issues, $(w=0.451,p>0.10)$.  
-
-When considering issue-related WAs, we observed that no issue-related WA influences PRCT. Although we do not observe a statistically significant result, the weight for the variable min\_issue\_contributors is $(w=0.599,p>0.10)$. Similarly, wip\_issues has $(w=0.544,p>0.10)$ and max\_issue\_age $(w=-0.385,p>0.10)$. Lastly, a WA not directly connected to either PRs or issues, no\_direct\_pushes\_to\_main\_branch has a major impact on PRCT with weight $(w=-1.28,p<0.01)$.
-
-The linear model also included a few independent variables outside the WA setup. slack\_users has weight $(w=-0.196,p<0.01)$. While WA-related variables have Boolean values, user-related metrics do not: they are measured in absolute team members. Therefore, while the slack\_users weight is relatively small, it can have a larger impact on the PRCT than a single WA configuration.
+The primary method used to answer RQ2 is the multiple linear regression model. The aim was to determine how Working Agreement configurations and other independent factors, such as team size, affect PRCT. The results are presented in Table \ref{tab:lmResults}. The values in the weight column represent the influence of the variable in days: negative values, therefore, imply a decrease in PRCT, while positive values imply an increase. Additionally, the same information is visualized in Figure \ref{fig:lmResultsChart}, with the asterisks indicating the p-value of the perceived result. When interpreting the results, one should pay attention to the intercepts of each model, as they provide the baseline to which the weights should be compared. 
 
 \input{LaTeX/figures/lmchart.tex}
 
 \input{LaTeX/figures/linearmodel.tex}
 
-In Progress Cycle Time (IPCT) results are presented in Table \ref{tab:lmipResults} and Figure \ref{fig:lmInProgressChart}, structured similarly to the PRCT counterparts.
+To summarize, regarding pull request -related WAs, we observed that wip\_pull\_requests has a strong prolonging effect on PRCT $(w=1.28,p<0.01)$. On the other hand, max\_pull\_request\_review\_time demonstrates a moderate decreasing impact on PRCT with $(w=-0.812,p<0.05)$. Although we do not observe a statistical significance in the following variables, the results are as follows: max\_pull\_request\_age $(w=-0.368,p>0.10)$ and pull\_request\_linking, a unique WA with a connection to both pull requests and issues, $(w=0.451,p>0.10)$.
 
-Regarding PR-related Working Agreements, the sign and magnitude of the weights are pretty similar as in the PRCT model: wip\_pull\_requests $(w=1.55, p<0.01)$ and max\_pull\_request\_review\_time $(w=-1.51, p<0.01)$ are both prime examples of this. Again, there are also WAs without statistical significance: max\_pull\_request\_age $(w=-0.235, p>0.10)$ and pull\_request\_linking $(w=-0.253, p>0.10)$. 
+When considering issue-related WAs, we observed that no issue-related WA influences PRCT. Although we do not observe a statistically significant result, the weight for the variable min\_issue\_contributors is $(w=0.599,p>0.10)$. Similarly, wip\_issues has $(w=0.544,p>0.10)$ and max\_issue\_age $(w=-0.385,p>0.10)$. Lastly, a WA not directly connected to either PRs or issues, no\_direct\_pushes\_to\_main\_branch has a major impact on PRCT with weight $(w=-1.28,p<0.01)$.
+
+The linear model also included a few independent variables outside the WA setup. slack\_users has weight $(w=-0.196,p<0.01)$. While WA-related variables have Boolean values, user-related metrics do not: they are measured in absolute team members. Therefore, while the slack\_users weight is relatively small, it can have a larger impact on the PRCT than a single WA configuration.
+
+In Progress Cycle Time (IPCT) results are presented in Table \ref{tab:lmipResults} and Figure \ref{fig:lmInProgressChart}, structured similarly to the PRCT counterparts. Regarding PR-related Working Agreements, the sign and magnitude of the weights are pretty similar as in the PRCT model: wip\_pull\_requests $(w=1.55, p<0.01)$ and max\_pull\_request\_review\_time $(w=-1.51, p<0.01)$ are both prime examples of this. Again, there are also WAs without statistical significance: max\_pull\_request\_age $(w=-0.235, p>0.10)$ and pull\_request\_linking $(w=-0.253, p>0.10)$. 
 
 \input{LaTeX/figures/linearmodel-ip.tex}
 
@@ -51,23 +50,21 @@ When it comes to the issue-related WAs, there was one WA with influence on IPCT:
 
 The linear models in which In Review Cycle Time (IRCT) and Ready to Merge Cycle Time (RMCT) were used as the dependent variable did not provide statistically significant results.
 
-\section{Working Agreement target effect on cycle times}
+\section{Working Agreement Target Effect on Cycle Times}
 
-The previously presented models looked into the WA configuration only on top-level: whether an agreement is used or not. Most of the Working Agreements require more precise goal-setting, such as defining the maximum amount of open pull requests. To gain more insight on the effect of these targets on the performance of the team, two additional models were crafted. In these models, the dependent variable was of Boolean datatype: whether the team met the goal or not. The values of the dependent variable were calculated using the logical statement $cycle\_time < target$. 
-
-These target models aim to measure the relationship between two WAs and their corresponding metrics: max\_pull\_request\_age and PRCT, as well as max\_pull\_request\_review\_time and IRCT. The WAs were selected for further analysis as they are PR-related and have well-defined metrics, to which data was easily available.
-
-For independent variables we used previously introduced daily\_digest and slack\_users, as well as two new ones: days\_in\_use to denote how many days has passed since the activation of the WA and target\_days, the configured goal in full days. As the PRCT is by average significantly longer than IRCT, this also affects target\_days: for max\_pull\_request\_age, the recommended configuration is 7 to 14 days, but for max\_pull\_request\_review\_time one to two days. It's important to keep this difference in mind when interpreting the model results. 
-
-Furthermore, as the dependent variable in these models is not continuous, the results have to be interpreted in a different manner. We set threshold for "is False" to  $Y<0.50$, and "is True" to $0.50\leq Y$, where $Y$ denotes the dependent variable. Therefore, In contrast to the previous models, a negative weight implies that $Y$ moves towards 0: the target is not met. Similarly, a positive weight means that an increase in the independent variable results in the increase of $Y$: the target is met more often.
+The previously presented models looked into the WA configuration only on top-level: whether an agreement is used. Most Working Agreements require specific goal-setting, such as defining the maximum amount of open pull requests. Two additional models were crafted to gain more insight into the effect of these targets on the team's performance. In these models, the dependent variable was Boolean datatype: whether the team met the goal. The dependent variable values were calculated using the logical statement $cycletime < target$. 
 
 \input{LaTeX/figures/prct-target.tex}
 
-Regarding PRCT target model, three out of four independent variables proved to have an influence on whether the target was achieved. The variable target\_days $(w=0.0144, p<0.01)$ has easily the largest weight. Next up is slack\_users $(w=-0.00551, p<0.01)$, with a notable negative weight: in the previous PRCT model, slack\_users had a positive on cycle times. Similarly, days\_in\_use $(w=-0.000234, p<0.01)$ implies that the longer the Working Agreement is used, the less it has an effect on whether the teams meet their targets: although, as the weight is quite small, the negative impact of time is atomic. Daily Digest $(w=0.00536, p>0.10)$ did not have an connection to $Y$ in this model. 
+These target models aim to measure the relationship between two WAs and their corresponding metrics: max\_pull\_request\_age and PRCT, as well as max\_pull\_request\_review\_time and IRCT. The WAs were selected for further analysis as they are PR-related and have well-defined metrics to which data was readily available.
+
+For independent variables, we used previously introduced daily\_digest and slack\_users, as well as two new ones: days\_in\_use to denote how many days have passed since the activation of the WA and target\_days, the configured goal in full days. As the PRCT is by average significantly longer than IRCT, this also affects target\_days: for max\_pull\_request\_age, the recommended configuration is 7 to 14 days, but for max\_pull\_request\_review\_time one to two days. When interpreting the model results, it is essential to keep this difference in mind. 
+
+Furthermore, as the dependent variable in these models is not continuous, the results must be interpreted differently. We set the threshold for ``is False'' to  $Y<0.50$ and ``is True'' to $0.50\leq Y$, where $Y$ denotes the dependent variable. In contrast to the previous models, a negative weight implies that $Y$ moves towards 0: the target is not met. Similarly, a positive weight means that an increase in the independent variable results in the increase of $Y$: the target is met more often.
 
 \input{LaTeX/figures/irct-target.tex}
 
-The results for the IRCT target model are generally similar, even though the p-values are lower for most variables. For this model, target\_days $(w=0.0978, p<0.01)$ has a major weight, especially when considering that the intercept weight is $0.435$. Again, slack\_users $(w=-0.00463, p<0.10)$ and days\_in\_use $(w=-0.000128, p<0.10)$ have a small negative effect. As in the case of PRCT target model, usage of Daily Digest $(w=0.0392, p>0.10)$ didn't help teams achieve their goals on review times.
+Regarding the PRCT target model, three out of four independent variables proved to influence whether the target was achieved. The variable target\_days $(w=0.0144, p<0.01)$ has by far the most significant weight. Next up is slack\_users $(w=-0.00551, p<0.01)$, with a substantial negative weight: in the previous PRCT model, slack\_users had a positive on cycle times. Similarly, days\_in\_use $(w=-0.000234, p<0.01)$ implies that the longer the Working Agreement is used, the less it affects whether the teams meet their targets: although, as the weight is relatively small, the negative impact of time is atomic. Daily Digest $(w=0.00536, p>0.10)$ did not have a connection to $Y$ in this model.
 
-
+The results for the IRCT target model are generally similar, even though the p-values are lower for most variables. For this model, target\_days $(w=0.0978, p<0.01)$ has a significant weight, especially considering that the intercept weight is $0.435$. Again, slack\_users $(w=-0.00463, p<0.10)$ and days\_in\_use $(w=-0.000128, p<0.10)$ have a small negative effect. As in the PRCT target model, usage of Daily Digest $(w=0.0392, p>0.10)$ did not help teams achieve their goals on review times.
 

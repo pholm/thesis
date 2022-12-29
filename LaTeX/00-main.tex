@@ -24,13 +24,20 @@
 
 % The eurosym package provides a euro symbol. Use with \euro{}
 \usepackage{eurosym}
-\usepackage{todonotes}
+
+%removed for last version
+%\usepackage{todonotes}
 
 % Verbatim provides a standard teletype environment that renders
 % the text exactly as written in the tex file. Useful for code
 % snippets (although you can also use the listings package to get
 % automatic code formatting). 
 \usepackage{verbatim}
+
+
+% package for custom titles
+\usepackage[raggedright]{titlesec}
+
 
 % The listing package provides automatic code formatting utilities
 % so that you can copy-paste code examples and have them rendered
@@ -44,6 +51,7 @@
 
 
 \usepackage{tabularx} 
+\usepackage{graphicx} 
 
 % correlation matrix stuff
 \usepackage{lscape}
@@ -77,7 +85,6 @@
 \usepackage[medium]{titlesec}
 \usepackage{listings}
 
-
 % The TikZ package allows you to create professional technical figures.
 % The learning curve is quite steep, but it is definitely worth it if 
 % you wish to have really good-looking technical figures. 
@@ -109,10 +116,6 @@
 % package for plotting and compability version
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.9}
-
-% custom command for defining variables
-\renewcommand*\descriptionlabel[1]{\hspace\leftmargin$#1$}
-
 
 
 % Hyperref
@@ -146,10 +149,10 @@
 % You can just fix the texts there. Just remember to check all the language
 % variants you use (they are all there in the same place). 
 % ------------------------------------------------------------------
-\newcommand{\TITLE}{Working Agreements influence on software development cycle times}
+\newcommand{\TITLE}{Exploring the Influence of Working Agreements on Software Development Cycle Times}
 \newcommand{\DATE}{December 30, 2022}
 
-\newcommand{\FTITLE}{Yhteisten työskentelytapojen vaikutus ohjelmistokehityssyklien kestoon}
+\newcommand{\FTITLE}{Yhteisten työskentelytapojen vaikutus ohjelmistokehityksen läpimenoaikoihin}
 \newcommand{\FDATE}{Joulukuu 30, 2022}
 
 % Supervisors and instructors
@@ -178,7 +181,7 @@
 % Professorship code is the same in all languages
 \newcommand{\PROFCODE}{SCI3042}
 \newcommand{\KEYWORDS}{software development, self-managing teams, working agreements, cycle time}
-\newcommand{\FKEYWORDS}{ohjelmistokehitys, itseohjautuvat tiimit, työskentelytavat, läpimenoaika}
+\newcommand{\FKEYWORDS}{ohjelmistokehitys, itseohjautuvat tiimit, työskentelytavat, prosessin läpimenoaika}
 \newcommand{\LANGUAGE}{English}
 \newcommand{\FLANGUAGE}{Englanti}
 
@@ -234,7 +237,7 @@
 % have a hyphen in them (for example, if you write ``structure-modification 
 % operation'', the word structure-modification will never be hyphenated).
 % You need a special package to hyphenate those words.
-\hyphenation{}
+\hyphenation{vuo-si-en}
 
 
 % The preamble ends here, and the document begins. 
@@ -275,16 +278,25 @@
 % show up in the TOC
 \chapter*{Acknowledgements}
 
-\todo[inline]{after review: write acknowledgements}
-\todo[inline]{check hbox etc errors}
-\todo[inline]{after review: remove absolute numbers in graphs}
-\todo[inline]{after review: remove listofotodos, remove draft from main.tex}
+Kaikkea minkä aloittaa ei ole pakko saada valmiiksi.\\
+
+\noindent Taistelin tämän ajatuksen kanssa syksyllä 2020. Työelämä meinasi viedä mennessään ja oli hieno tunne keskittyä yhteen asiaan kerralla. Pohdin, voisiko vielä maisteriopintoihin löytää vastaavan kiinnostuksen. Kun harrastuksesta tulee intohimo, löytää uudenlaisen motivaation niin opintoihin kuin työtehtäviin: hyppy tietotekniikan maisteriohjelmaan on eittämättä ollut elämän parhaita päätöksiä. Diplomityössäni pääsinkin yhdistämään molempien tieteenalojen oppeja. 
+
+Akateemisen kirjoitustyylin me-muoto tuntui aluksi hieman erikoiselta – yksinhän diplomitöitä tehdään. Huomasin kuitenkin, että Holmin tutkimusryhmä on ollut jo pitkään paljon enemmän kuin allekirjoittanut.
+
+Kiitoksia valvojalleni Arto Hellakselle ehtymättömästä tuesta ja kannustavasta otteesta. Tapaamisissamme sain uutta intoa vääntöön sekä arvokkaita oppeja niin työhön kuin muuhunkin elämään.
+
+Haluan kiittää ohjaajaani Ari-Pekka Koposta arvokkaista näkemyksistä ja puskemisesta kohti tavoitetta. Ratkaisut haastavimpiinkin ongelmiin olivat usein vain yhden Slack-viestin päässä. Kiitos myös muille swarmialaisille kaikesta avusta sekä yhteisistä hetkistä. 
+
+Kotona opitut Windows 3.1:n komentorivin alkeet ja kannustus läksyjen pariin ovat kantaneet alakoulusta tähän päivään. Kiitos perheelle tuesta niin opinnoissa kuin muissakin elämän haasteissa. 
+
+Kiitos laitoslordi emeritus Ilarille mähmintäpuheluista ja lyhyestä oppimäärästä lineaarimalleihin. Lopuksi, vähemmän akateemisesta tuesta vuosien varrella kiitos lukemattomille ystäville.
 
 \vskip 10mm
 
-\noindent 
-\FDATE
+\noindent \FDATE
 \vskip 5mm
+\noindent \textit{Left to my own devices,}\\
 \noindent\AUTHOR
 
 % Acronyms
