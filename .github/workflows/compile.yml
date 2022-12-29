@@ -12,6 +12,7 @@ jobs:
         with:
           root_file: 00-main.tex
           working_directory: LaTeX
+          continue_on_error: true
       - name: Delete latest release
         if: success()
         uses: ame-yu/action-delete-latest-release@v2
